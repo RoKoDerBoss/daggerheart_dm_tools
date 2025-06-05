@@ -7,7 +7,7 @@
   publish = "out"
   
   # Node.js version
-  environment = { NODE_VERSION = "18.17.0" }
+  environment = { NODE_VERSION = "20" }
 
 # Build performance optimizations
 [build.processing]

@@ -15,7 +15,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-accent hover:text-accent/80 transition-colors">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-accent hover:text-accent/80 transition-colors">
               ⚔️ Daggerheart DM Tools
             </Link>
           </div>
