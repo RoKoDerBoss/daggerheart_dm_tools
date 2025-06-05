@@ -16,21 +16,22 @@ export const TOOL_CATEGORIES = {
 } as const
 
 export const TOOLS_REGISTRY: Record<string, Tool> = {
-  'random-loot-generator': {
-    id: 'random-loot-generator',
-    name: 'Random Loot Generator',
-    description: 'Generate exciting treasure and loot for your adventures with customizable rarity and item types.',
-    icon: '💰',
-    category: TOOL_CATEGORIES.EQUIPMENT,
+  'fear-tracker': {
+    id: 'fear-tracker',
+    name: 'Fear Tracker',
+    description: 'Track mounting dread and fear levels in your campaign with visual skull indicators.',
+    icon: '💀',
+    category: TOOL_CATEGORIES.UTILITIES,
     status: 'active',
     features: [
-      'Generate items by rarity (Common, Uncommon, Rare, Legendary)',
-      'Generate consumables with varied effects',
-      'Dice-based rolling system with visual feedback',
-      'Detailed item descriptions and rarity indicators',
-      'Balanced for Daggerheart economy'
+      'Visual fear counter from 0-12 with skull indicators',
+      'Animated skull effects that pulse and react',
+      'Shake effects when fear increases',
+      'Maximum fear warning with enhanced visuals',
+      'Simple +/- controls for quick adjustments',
+      'Mobile-responsive interface'
     ],
-    component: 'LootGeneratorComponent'
+    component: 'FearTrackerComponent'
   },
   'battle-point-calculator': {
     id: 'battle-point-calculator',
@@ -47,6 +48,22 @@ export const TOOLS_REGISTRY: Record<string, Tool> = {
       'Real-time budget tracking and warnings'
     ],
     component: 'BattlePointsCalculatorComponent'
+  },
+  'random-loot-generator': {
+    id: 'random-loot-generator',
+    name: 'Random Loot Generator',
+    description: 'Generate exciting treasure and loot for your adventures with customizable rarity and item types.',
+    icon: '💰',
+    category: TOOL_CATEGORIES.EQUIPMENT,
+    status: 'active',
+    features: [
+      'Generate items by rarity (Common, Uncommon, Rare, Legendary)',
+      'Generate consumables with varied effects',
+      'Dice-based rolling system with visual feedback',
+      'Detailed item descriptions and rarity indicators',
+      'Balanced for Daggerheart economy'
+    ],
+    component: 'LootGeneratorComponent'
   },
   'dice-roller': {
     id: 'dice-roller',
@@ -80,7 +97,7 @@ export function getToolsByCategory(category: string): Tool[] {
 
 export function getFeaturedTools(): Tool[] {
   return getAllTools().filter(tool => 
-    tool.id === 'random-loot-generator' || tool.id === 'battle-point-calculator'
+    tool.id === 'random-loot-generator' || tool.id === 'battle-point-calculator' || tool.id === 'fear-tracker'
   )
 }
 

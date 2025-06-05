@@ -28,10 +28,10 @@ export default function Home() {
                 Explore All Tools
               </Link>
               <Link 
-                href="/tools/random-loot-generator" 
+                href="/tools/fear-tracker" 
                 className="btn-secondary text-lg px-8 py-4 inline-block text-decoration-none"
               >
-                Try Loot Generator
+                Try Fear Tracker
               </Link>
             </div>
           </div>

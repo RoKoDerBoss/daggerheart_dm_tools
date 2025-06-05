@@ -29,12 +29,6 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
               >
                 ← Back to Tools
               </Link>
-              <Link 
-                href="/" 
-                className="text-muted hover:text-accent transition-colors text-sm"
-              >
-                Home
-              </Link>
             </div>
 
             {/* Center: Current Tool Info */}
@@ -42,8 +36,7 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
               <div className="hidden md:flex items-center space-x-3">
                 <div className="text-2xl">{currentTool.icon}</div>
                 <div>
-                  <div className="font-semibold text-foreground">{currentTool.name}</div>
-                  <div className="text-xs text-muted">{currentTool.category}</div>
+                  <div className="text-2xl font-semibold text-foreground">{currentTool.name}</div>
                 </div>
               </div>
             )}
@@ -107,11 +100,10 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
 
           {/* Mobile: Current Tool Info */}
           {currentTool && (
-            <div className="md:hidden mt-4 flex items-center space-x-3 pt-4 border-t border-accent/20">
+            <div className="justify-center text-2xl md:hidden mt-4 flex items-center space-x-3 pt-4 border-t border-accent/20">
               <div className="text-2xl">{currentTool.icon}</div>
               <div>
                 <div className="font-semibold text-foreground">{currentTool.name}</div>
-                <div className="text-sm text-muted">{currentTool.category}</div>
               </div>
             </div>
           )}

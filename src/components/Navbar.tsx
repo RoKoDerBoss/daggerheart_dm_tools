@@ -11,12 +11,12 @@ export default function Navbar() {
 
   return (
     <nav className="bg-card border-b-2 border-accent/20 relative z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
             <Link href="/" className="text-2xl font-bold text-accent hover:text-accent/80 transition-colors">
-              ⚔️ Daggerheart Tools
+              ⚔️ Daggerheart DM Tools
             </Link>
           </div>
 
@@ -45,7 +45,7 @@ export default function Navbar() {
               </button>
               
               {isToolsDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 dropdown-menu">
+                <div className="absolute top-full right-0 mt-2 w-56 dropdown-menu">
                   <div className="py-2">
                     {tools.map((tool) => (
                       <Link

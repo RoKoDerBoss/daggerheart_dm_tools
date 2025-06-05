@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/Button'
 import { generateMultipleLoot } from '@/utils/data-access'
+import ToolInfo from '@/components/ToolInfo'
 import type { LootItem } from '@/data'
 
 interface LootGeneratorComponentProps {}
@@ -67,7 +68,15 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
   )
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
+      {/* Brief Description */}
+      <div className="text-center -mt-2">
+        <p className="text-lg text-muted italic leading-relaxed max-w-2xl mx-auto">
+          Generate exciting treasure and loot with customizable rarity and item types for your adventures
+        </p>
+      </div>
+
+      {/* Loot Generator Tool */}
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Items Generator */}
         <div className="fantasy-card p-6">
@@ -146,6 +155,51 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
           <LootDisplay items={generatedConsumables} emptyMessage="No consumables yet..." />
         </div>
       </div>
+
+      {/* Detailed Information Accordion */}
+      <ToolInfo title="About Loot Generator">
+        <h3>How It Works</h3>
+        <p>
+          The Loot Generator creates exciting treasure and items for your Daggerheart campaigns using dice-based generation. 
+          Each item is randomly selected and includes detailed descriptions to enhance your storytelling.
+        </p>
+        
+        <h3>Key Features</h3>
+        <div className="feature-grid">
+          <div className="feature-card">
+            <h4>Rarity-Based Generation</h4>
+            <p>Generate items by specific rarity levels (Common, Uncommon, Rare, Legendary) or let the dice decide</p>
+          </div>
+          <div className="feature-card">
+            <h4>Dual Item Types</h4>
+            <p>Create both permanent items and consumables with different generation rules</p>
+          </div>
+          <div className="feature-card">
+            <h4>Dice Roll Tracking</h4>
+            <p>See the actual dice rolls that determined each item for transparency and authenticity</p>
+          </div>
+          <div className="feature-card">
+            <h4>Bulk Generation</h4>
+            <p>Generate multiple items at once to quickly populate treasure hoards or merchant inventories</p>
+          </div>
+        </div>
+
+        <h3>Item Rarity System</h3>
+        <ul>
+          <li><strong>Common:</strong> Basic equipment and simple tools (1d12 or 2d12 range)</li>
+          <li><strong>Uncommon:</strong> Quality gear with minor enhancements (2d12 or 3d12 range)</li>
+          <li><strong>Rare:</strong> Exceptional items with notable properties (3d12 or 4d12 range)</li>
+          <li><strong>Legendary:</strong> Powerful artifacts and magical treasures (4d12 or 5d12 range)</li>
+        </ul>
+
+        <h3>Usage Tips</h3>
+        <ul>
+          <li>Use &quot;Any Rarity&quot; for completely random treasure discovery</li>
+          <li>Target specific rarities when creating themed encounters or rewards</li>
+          <li>Generate consumables separately to balance permanent item rewards</li>
+          <li>Save generated lists for quick reference during gameplay</li>
+        </ul>
+      </ToolInfo>
     </div>
   )
 } 

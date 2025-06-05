@@ -34,9 +34,11 @@ export default function ToolsPage() {
                       <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                         {tool.name}
                       </h3>
-                      <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded font-semibold">
-                        {tool.status === 'coming-soon' ? 'Coming Soon' : tool.status}
-                      </span>
+                      {tool.status !== 'active' && (
+                        <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded font-semibold">
+                          {tool.status === 'coming-soon' ? 'Coming Soon' : tool.status}
+                        </span>
+                      )}
                     </div>
                     <div className="mb-3">
                       <span className="text-xs px-2 py-1 bg-accent text-background rounded font-semibold">

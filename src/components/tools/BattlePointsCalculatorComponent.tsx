@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Button } from '@/components/Button'
 import { calculateBattlePoints, exportBattleEncounter, type BattleEncounter } from '@/utils/data-access'
+import ToolInfo from '@/components/ToolInfo'
 import { ADVERSARY_TYPES, BATTLE_ADJUSTMENTS } from '@/data'
 
 interface BattlePointsCalculatorComponentProps {}
@@ -164,47 +165,56 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
     </svg>
   )
 
-  const RotateCcwIcon = () => (
+  const RefreshIcon = () => (
     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
     </svg>
   )
 
   return (
-    <div className="space-y-8">
-      {/* Header Actions */}
-      <div className="flex justify-end gap-3">
-        <Button 
-          onClick={handleExportEncounter}
-          variant="secondary"
-          className="flex items-center gap-2"
-        >
-          <DownloadIcon />
-          Export
-        </Button>
-        <Button 
-          onClick={resetCalculator}
-          variant="secondary"
-          className="flex items-center gap-2"
-        >
-          <RotateCcwIcon />
-          Reset
-        </Button>
+    <div className="space-y-6">
+      {/* Brief Description */}
+      <div className="text-center -mt-2">
+        <p className="text-lg text-muted italic leading-relaxed max-w-2xl mx-auto">
+          Calculate and track battle points for encounters, helping balance challenging fights
+        </p>
       </div>
+
+
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Left Column - Setup */}
         <div className="space-y-6">
           {/* Party Setup & Adjustments */}
           <div className="fantasy-card p-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Party Setup & Adjustments</h2>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-foreground">Party Setup & Adjustments</h2>
+              <div className="flex gap-2">
+                <Button 
+                  onClick={handleExportEncounter}
+                  variant="secondary"
+                  className="flex items-center gap-1.5 text-sm px-3 py-2"
+                >
+                  <DownloadIcon />
+                  <span className="hidden lg:inline">Export</span>
+                </Button>
+                <Button 
+                  onClick={resetCalculator}
+                  variant="secondary"
+                  className="flex items-center gap-1.5 text-sm px-3 py-2"
+                >
+                  <RefreshIcon />
+                  <span className="hidden lg:inline">Reset</span>
+                </Button>
+              </div>
+            </div>
             
             <div className="grid md:grid-cols-2 gap-6">
               {/* Party Setup */}
               <div>
-                <h3 className="text-lg font-semibold text-foreground mb-4">Party Setup</h3>
+                <h3 className="text-lg font-semibold text-foreground mb-4">Party Size</h3>
                 <div>
-                  <label className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
+                  <label className="block text-xs font-medium text-muted mb-2 uppercase tracking-wide">
                     Number of PCs
                   </label>
                   <input
@@ -467,6 +477,54 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
           </div>
         </div>
       </div>
+
+      {/* Detailed Information Accordion */}
+      <ToolInfo title="About Battle Points Calculator">
+        <h3>How It Works</h3>
+        <p>
+          The Battle Points Calculator helps you create balanced encounters for your Daggerheart campaigns. 
+          Set your party size, choose adversary types, and apply situational adjustments to generate the perfect challenge level.
+        </p>
+        
+        <h3>Key Features</h3>
+        <div className="feature-grid">
+          <div className="feature-card">
+            <h4>Dynamic Point Calculation</h4>
+            <p>Automatically calculates base points and adjustments based on party size and encounter modifiers</p>
+          </div>
+          <div className="feature-card">
+            <h4>Adversary Budget Tracking</h4>
+            <p>Real-time tracking of spent and remaining battle points with visual warnings for budget limits</p>
+          </div>
+          <div className="feature-card">
+            <h4>Encounter Export</h4>
+            <p>Export complete encounter details as text files for easy reference during gameplay</p>
+          </div>
+          <div className="feature-card">
+            <h4>Flexible Adjustments</h4>
+            <p>Apply situational modifiers to fine-tune encounter difficulty based on circumstances</p>
+          </div>
+        </div>
+
+        <h3>Adversary Types & Costs</h3>
+        <ul>
+          <li><strong>1 Point:</strong> Minions, Social/Support adversaries</li>
+          <li><strong>2 Points:</strong> Horde, Ranged, Skulk, Standard adversaries</li>
+          <li><strong>3 Points:</strong> Leader adversaries</li>
+          <li><strong>4 Points:</strong> Bruiser adversaries</li>
+          <li><strong>5 Points:</strong> Solo adversaries</li>
+        </ul>
+
+        <h3>Encounter Adjustments</h3>
+        <ul>
+          <li><strong>Easier:</strong> Reduces total budget for simpler encounters</li>
+          <li><strong>Two Solos:</strong> Adjustment for encounters with multiple solo adversaries</li>
+          <li><strong>Bonus Damage:</strong> Account for environmental or special damage sources</li>
+          <li><strong>Lower Tier:</strong> Adjustment for adversaries below party level</li>
+          <li><strong>No Bruisers/Etc:</strong> Compensation when avoiding certain adversary types</li>
+          <li><strong>Harder:</strong> Increases budget for more challenging encounters</li>
+        </ul>
+      </ToolInfo>
     </div>
   )
 } 
