@@ -483,7 +483,7 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
         <h3>How It Works</h3>
         <p>
           The Battle Points Calculator helps you create balanced encounters for your Daggerheart campaigns. 
-          Set your party size, choose adversary types, and apply situational adjustments to generate the perfect challenge level.
+          Based on the Core Rulebook you can set your party size, choose adversary types, and apply situational adjustments to generate the perfect challenge level.
         </p>
         
         <h3>Key Features</h3>
@@ -499,10 +499,6 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
           <div className="feature-card">
             <h4>Encounter Export</h4>
             <p>Export complete encounter details as text files for easy reference during gameplay</p>
-          </div>
-          <div className="feature-card">
-            <h4>Flexible Adjustments</h4>
-            <p>Apply situational modifiers to fine-tune encounter difficulty based on circumstances</p>
           </div>
         </div>
 

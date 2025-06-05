@@ -160,7 +160,7 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
       <ToolInfo title="About Loot Generator">
         <h3>How It Works</h3>
         <p>
-          The Loot Generator creates exciting treasure and items for your Daggerheart campaigns using dice-based generation. 
+          The Loot Generator can be used to create party loot on the flyduring your Daggerheart campaigns using the dice-based generation from the Core Rulebook. 
           Each item is randomly selected and includes detailed descriptions to enhance your storytelling.
         </p>
         
@@ -197,7 +197,6 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
           <li>Use &quot;Any Rarity&quot; for completely random treasure discovery</li>
           <li>Target specific rarities when creating themed encounters or rewards</li>
           <li>Generate consumables separately to balance permanent item rewards</li>
-          <li>Save generated lists for quick reference during gameplay</li>
         </ul>
       </ToolInfo>
     </div>

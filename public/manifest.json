@@ -1,0 +1,33 @@
+{
+  "name": "Daggerheart DM Tools",
+  "short_name": "DM Tools",
+  "description": "Essential tools for Daggerheart Game Masters - Generate loot, calculate battle points, and manage your campaigns",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1444",
+  "theme_color": "#f4d03f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["games", "utilities", "productivity"],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "Daggerheart DM Tools Interface"
+    }
+  ]
+} 

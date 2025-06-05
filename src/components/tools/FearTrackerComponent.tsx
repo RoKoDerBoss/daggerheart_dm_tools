@@ -112,7 +112,8 @@ export default function FearTrackerComponent({}: FearTrackerComponentProps) {
       <ToolInfo title="About Fear Tracker">
         <h3>How It Works</h3>
         <p>
-          The Fear Tracker helps you monitor the mounting dread and tension in your Daggerheart campaigns. 
+          The Fear Tracker helps you monitor the looming doom and tension in your Daggerheart campaigns from 0-12. 
+          You can share your screen with your players, to show them the fear level and the skulls and make them feel the dread.
           As fear increases, visual skull indicators appear with animated effects to enhance the atmosphere at your table.
         </p>
         
@@ -121,10 +122,6 @@ export default function FearTrackerComponent({}: FearTrackerComponentProps) {
           <div className="feature-card">
             <h4>Visual Indicators</h4>
             <p>Animated skulls appear as fear increases, with enhanced effects at maximum fear</p>
-          </div>
-          <div className="feature-card">
-            <h4>Interactive Effects</h4>
-            <p>Shake animations when fear increases and hover effects on skull indicators</p>
           </div>
           <div className="feature-card">
             <h4>Maximum Fear Warning</h4>
@@ -136,13 +133,11 @@ export default function FearTrackerComponent({}: FearTrackerComponentProps) {
           </div>
         </div>
 
-        <h3>Using Fear in Daggerheart</h3>
+        <h3>Fear in Daggerheart</h3>
         <ul>
-          <li>Track environmental threats and mounting tension</li>
-          <li>Represent psychological pressure on characters</li>
-          <li>Build atmosphere during horror or suspense encounters</li>
-          <li>Visualize escalating danger in dramatic moments</li>
-          <li>Create memorable narrative beats with visual feedback</li>
+          <li>DMs collect fear points, when players roll theirs duality die with "Fear"</li>
+          <li>Fear can be spent in different ways to add complications to the story</li>
+          <li>The more fear a DM collected, the 'interesting' things can get...</li>
         </ul>
       </ToolInfo>
 
