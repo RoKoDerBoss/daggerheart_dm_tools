@@ -1,0 +1,81 @@
+# Netlify configuration for Daggerheart DM Tools
+[build]
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish (Next.js static export output)
+  publish = "out"
+  
+  # Node.js version
+  environment = { NODE_VERSION = "18.17.0" }
+
+# Build performance optimizations
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# SPA redirect rules for client-side routing
+[[redirects]]
+  # Redirect all routes to index.html for SPA behavior
+  # This ensures that direct links to tool pages work correctly
+  from = "/tools/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # Handle any other routes that don't exist
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Performance headers
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    # HTML files should not be cached aggressively
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    # Service worker should not be cached
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Form handling (if needed in the future)
+[forms]
+  settings = { error_template = "error.html" }
+
+# Environment variables (you can set these in Netlify UI instead)
+[context.production.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[context.deploy-preview.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1"
+
+[context.branch-deploy.environment]
+  NODE_ENV = "production"
+  NEXT_TELEMETRY_DISABLED = "1" 

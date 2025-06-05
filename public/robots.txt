@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://your-domain.netlify.app/sitemap.xml
+
+# Allow search engines to index the tools
+Allow: /tools/
+Allow: /tools/loot-generator/
+Allow: /tools/battle-point-calculator/
+
+# Disallow any admin or private paths (if any exist in the future)
+Disallow: /admin/
+Disallow: /api/ 
