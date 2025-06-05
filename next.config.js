@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const path = require('path')
-
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
@@ -8,10 +6,11 @@ const nextConfig = {
   distDir: 'out',
   
   // Configure webpack for path aliases
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
+    // Add path alias configuration
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname, 'src'),
+      '@': require('path').resolve(__dirname, 'src'),
     }
     return config
   },
