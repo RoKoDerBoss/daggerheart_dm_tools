@@ -1,9 +1,20 @@
 /** @type {import('next').NextConfig} */
+const path = require('path')
+
 const nextConfig = {
   output: 'export',
   trailingSlash: true,
   skipTrailingSlashRedirect: true,
   distDir: 'out',
+  
+  // Configure webpack for path aliases
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, 'src'),
+    }
+    return config
+  },
   
   // Image optimization for static export
   images: {
