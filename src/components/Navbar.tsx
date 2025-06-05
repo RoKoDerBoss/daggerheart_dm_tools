@@ -65,9 +65,7 @@ export default function Navbar() {
               )}
             </div>
 
-            <Link href="/tools" className="nav-link">
-              Browse All
-            </Link>
+
           </div>
 
           {/* Mobile menu button */}
@@ -98,13 +96,7 @@ export default function Navbar() {
               >
                 Home
               </Link>
-              <Link 
-                href="/tools" 
-                className="block nav-link"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Browse All Tools
-              </Link>
+
               
               {/* Mobile Tools List */}
               <div className="border-t border-accent/20 pt-2 mt-2">

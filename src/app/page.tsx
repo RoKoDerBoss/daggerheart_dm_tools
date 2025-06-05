@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { getAllTools, getFeaturedTools } from '@/config/tools'
+import { getFeaturedTools } from '@/config/tools'
 
 export default function Home() {
-  const allTools = getAllTools()
   const featuredTools = getFeaturedTools()
-  const regularTools = allTools.filter(tool => !featuredTools.some(ft => ft.id === tool.id))
 
   return (
     <div className="min-h-screen fantasy-bg">
@@ -80,63 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* All Tools Grid */}
-      {regularTools.length > 0 && (
-        <section className="py-16 relative">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold text-foreground mb-4">Complete Toolkit</h2>
-              <p className="text-xl text-muted">Everything you need to run epic Daggerheart campaigns</p>
-            </div>
-            
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-              {regularTools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  href={`/tools/${tool.id}`}
-                  className="fantasy-card p-6 block text-decoration-none group"
-                >
-                  <div className="text-3xl mb-4">{tool.icon}</div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors">
-                      {tool.name}
-                    </h3>
-                    <span className="text-xs px-2 py-1 bg-accent/20 text-accent rounded font-semibold">
-                      {tool.category}
-                    </span>
-                  </div>
-                  <p className="text-muted mb-4 text-sm leading-relaxed">
-                    {tool.description}
-                  </p>
-                  <div className="text-accent font-semibold text-sm group-hover:text-accent/80 transition-colors">
-                    Try it now →
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
-      {/* About Section */}
-      <section className="py-16 relative">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="fantasy-card p-8 lg:p-12 text-center">
-              <h2 className="text-3xl font-bold text-foreground mb-6">About Daggerheart</h2>
-              <p className="text-lg text-muted leading-relaxed mb-6">
-                Daggerheart is a fantasy tabletop roleplaying game of brave heroics and vibrant worlds 
-                that are built together with your gaming group. Create a shared story full of tension, 
-                laughter, and memorable moments about the heroic deeds of fantastic characters.
-              </p>
-              <p className="text-muted">
-                Our tools are designed to streamline your game sessions, letting you focus on what matters most: 
-                <span className="text-accent font-semibold"> telling amazing stories together</span>.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 } 

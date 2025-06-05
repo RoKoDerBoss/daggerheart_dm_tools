@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { getAllTools, getFeaturedTools } from '@/config/tools'
+import { getAllTools } from '@/config/tools'
 
 export default function ToolsPage() {
   const allTools = getAllTools()
-  const featuredTools = getFeaturedTools()
-  const regularTools = allTools.filter(tool => !featuredTools.some(ft => ft.id === tool.id))
 
   return (
     <div className="min-h-screen fantasy-bg">
@@ -21,51 +19,11 @@ export default function ToolsPage() {
             </p>
           </div>
 
-          {/* Featured Tools */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Featured Tools</h2>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {featuredTools.map((tool) => (
-                <Link
-                  key={tool.id}
-                  href={`/tools/${tool.id}`}
-                  className="fantasy-card p-8 block text-decoration-none group"
-                >
-                  <div className="flex items-start space-x-6">
-                    <div className="text-5xl">{tool.icon}</div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
-                          {tool.name}
-                        </h3>
-                        <span className="text-xs px-3 py-1 bg-accent/20 text-accent rounded-full font-semibold">
-                          {tool.status === 'coming-soon' ? 'Coming Soon' : tool.status}
-                        </span>
-                      </div>
-                      <div className="mb-4">
-                        <span className="text-sm px-2 py-1 bg-accent text-background rounded font-semibold">
-                          {tool.category}
-                        </span>
-                      </div>
-                      <p className="text-muted mb-4 leading-relaxed">
-                        {tool.description}
-                      </p>
-                      <div className="text-accent font-semibold group-hover:text-accent/80 transition-colors">
-                        Explore Tool →
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-
           {/* All Tools Grid */}
-          {regularTools.length > 0 && (
-            <div className="mb-16">
-              <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Complete Collection</h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {regularTools.map((tool) => (
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Complete Collection</h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {allTools.map((tool) => (
                   <Link
                     key={tool.id}
                     href={`/tools/${tool.id}`}
@@ -95,34 +53,7 @@ export default function ToolsPage() {
                 ))}
               </div>
             </div>
-          )}
 
-          {/* Call to Action */}
-          <div className="text-center">
-            <div className="fantasy-card p-8 lg:p-12 max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                More Tools Coming Soon
-              </h3>
-              <p className="text-muted mb-6 leading-relaxed">
-                We&apos;re constantly expanding our toolkit to support every aspect of your Daggerheart campaigns. 
-                Have a suggestion for a new tool? We&apos;d love to hear from you!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link 
-                  href="/" 
-                  className="btn-primary text-center"
-                >
-                  Back to Home
-                </Link>
-                <Link 
-                  href="/tools/random-loot-generator" 
-                  className="btn-secondary text-center"
-                >
-                  Try Featured Tool
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
