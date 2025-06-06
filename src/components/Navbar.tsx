@@ -15,14 +15,14 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl sm:text-2xl font-bold text-accent hover:text-accent/80 transition-colors">
+            <Link href="/" className="text-xl sm:text-3xl font-cormorant-upright font-bold text-accent hover:text-accent/80 transition-colors">
               ⚔️ Daggerheart DM Tools
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            <Link href="/" className="nav-link">
+            <Link href="/" className="nav-link font-cormorant-upright text-xl">
               Home
             </Link>
             
@@ -31,7 +31,7 @@ export default function Navbar() {
               <button
                 onClick={() => setIsToolsDropdownOpen(!isToolsDropdownOpen)}
                 onBlur={() => setTimeout(() => setIsToolsDropdownOpen(false), 150)}
-                className="nav-link flex items-center space-x-1"
+                className="nav-link flex items-center space-x-1  font-cormorant-upright text-xl"
               >
                 <span>Tools</span>
                 <svg 

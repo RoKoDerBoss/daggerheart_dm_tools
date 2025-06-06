@@ -135,9 +135,9 @@ export default function FearTrackerComponent({}: FearTrackerComponentProps) {
 
         <h3>Fear in Daggerheart</h3>
         <ul>
-          <li>DMs collect fear points, when players roll theirs duality die with "Fear"</li>
+          <li>DMs collect fear points, when players roll theirs duality die with &quot;Fear&quot;</li>
           <li>Fear can be spent in different ways to add complications to the story</li>
-          <li>The more fear a DM collected, the 'interesting' things can get...</li>
+          <li>The more fear a DM collected, the &apos;interesting&apos; things can get...</li>
         </ul>
       </ToolInfo>
 

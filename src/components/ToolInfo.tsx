@@ -46,7 +46,7 @@ export default function ToolInfo({
       >
         <div className="tool-info-title">
           <span className="tool-info-icon">✦</span>
-          <span>{title}</span>
+          <span className="font-cormorant-upright font-bold text-xl">{title}</span>
         </div>
         <div className={`tool-info-chevron ${isExpanded ? 'expanded' : ''}`}>
           <svg 

@@ -19,6 +19,9 @@ module.exports = {
         warning: "var(--warning)",
         error: "var(--error)",
       },
+      fontFamily: {
+        'cormorant-upright': ['"Cormorant Upright"', 'serif'],
+      },
     },
   },
   plugins: [],

@@ -97,7 +97,7 @@ export function getToolsByCategory(category: string): Tool[] {
 
 export function getFeaturedTools(): Tool[] {
   return getAllTools().filter(tool => 
-    tool.id === 'random-loot-generator' || tool.id === 'battle-point-calculator' || tool.id === 'fear-tracker'
+    tool.id === 'battle-point-calculator' || tool.id === 'fear-tracker'
   )
 }
 

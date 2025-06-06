@@ -10,7 +10,7 @@ export default function ToolsPage() {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-5xl lg:text-6xl font-cormorant-upright font-bold text-foreground mb-6">
               DM <span className="text-accent">Toolkit</span>
             </h1>
             <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">
@@ -21,7 +21,7 @@ export default function ToolsPage() {
 
           {/* All Tools Grid */}
           <div className="mb-16">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Complete Collection</h2>
+            <h2 className="text-3xl sm:text-4xl font-cormorant-upright font-bold text-foreground mb-8 text-center">Complete Collection</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {allTools.map((tool) => (
                   <Link

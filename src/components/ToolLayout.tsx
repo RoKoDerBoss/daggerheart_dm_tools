@@ -36,7 +36,7 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
               <div className="hidden md:flex items-center space-x-3">
                 <div className="text-2xl">{currentTool.icon}</div>
                 <div>
-                  <div className="text-2xl font-semibold text-foreground">{currentTool.name}</div>
+                  <div className="text-2xl sm:text-3xl font-cormorant-upright font-bold text-foreground">{currentTool.name}</div>
                 </div>
               </div>
             )}
@@ -103,7 +103,7 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
             <div className="justify-center text-2xl md:hidden mt-4 flex items-center space-x-3 pt-4 border-t border-accent/20">
               <div className="text-2xl">{currentTool.icon}</div>
               <div>
-                <div className="font-semibold text-foreground">{currentTool.name}</div>
+                <div className="font-cormorant-upright font-semibold text-foreground text-2xl sm:text-3xl">{currentTool.name}</div>
               </div>
             </div>
           )}
@@ -119,7 +119,7 @@ export default function ToolLayout({ children, currentToolId }: ToolLayoutProps)
       <div className="bg-card border-t-2 border-accent/20 mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
-            <h3 className="text-lg font-semibold text-foreground mb-4">
+            <h3 className="text-xl sm:text-2xl font-cormorant-upright font-bold text-foreground mb-4 sm:mb-2">
               Explore More Tools
             </h3>
             <div className="flex flex-wrap justify-center gap-4 mb-6">
