@@ -65,6 +65,23 @@ export const TOOLS_REGISTRY: Record<string, Tool> = {
     ],
     component: 'LootGeneratorComponent'
   },
+  'monster-builder': {
+    id: 'monster-builder',
+    name: 'Monster Builder',
+    description: 'Generate custom monsters for your Daggerheart campaigns with randomized features and stats.',
+    icon: '🐉',
+    category: TOOL_CATEGORIES.COMBAT,
+    status: 'active',
+    features: [
+      'Generate monsters by tier (1-4) and type (Standard, Bruiser, Horde, etc.)',
+      'Randomized features based on monster type and general abilities',
+      'Editable monster names and feature selection',
+      'Export individual monsters as formatted text files',
+      'Bulk generate 2-5 monsters at once',
+      'Export multiple monsters to a single file'
+    ],
+    component: 'MonsterBuilderComponent'
+  },
   'dice-roller': {
     id: 'dice-roller',
     name: 'Dice Roller',

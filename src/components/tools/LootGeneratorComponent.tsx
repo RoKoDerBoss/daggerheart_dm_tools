@@ -117,7 +117,7 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
               />
             </div>
             
-            <Button onClick={handleGenerateItems} className="w-full mt-4">
+            <Button onClick={handleGenerateItems} className="w-full mt-4 rounded-xl">
               Generate Items
             </Button>
           </div>
@@ -147,7 +147,7 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
               />
             </div>
             
-            <Button onClick={handleGenerateConsumables} className="w-full mt-4">
+            <Button onClick={handleGenerateConsumables} className="w-full mt-4 rounded-xl">
               Generate Consumables
             </Button>
           </div>

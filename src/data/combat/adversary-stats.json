@@ -1,0 +1,412 @@
+[
+  {
+    "Role (Type)": "Standard",
+    "Tier": 1,
+    "Difficulty": 12,
+    "Threshold (Major/Severe)": "5 / 10",
+    "Attack": "+1",
+    "Damage": "1d6+1",
+    "Hitpoints": 4,
+    "Stress": 2,
+    "Features": 2
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 14,
+    "Threshold (Major/Severe)": "10 / 19",
+    "Attack": "+1",
+    "Damage": "2d8+3",
+    "Hitpoints": 4,
+    "Stress": 3,
+    "Features": 3
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 17,
+    "Threshold (Major/Severe)": "19 / 36",
+    "Attack": "+3",
+    "Damage": "3d8+6",
+    "Hitpoints": 6,
+    "Stress": 5,
+    "Features": 3
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 19,
+    "Threshold (Major/Severe)": "22 / 50",
+    "Attack": "+3",
+    "Damage": "4d10+10",
+    "Hitpoints": 5,
+    "Stress": 3,
+    "Features": 2
+  },
+  {
+    "Role (Type)": "Bruiser",
+    "Tier": 1,
+    "Difficulty": 12,
+    "Threshold (Major/Severe)": "8 / 15",
+    "Attack": "+1",
+    "Damage": "1d10+2",
+    "Hitpoints": 6,
+    "Stress": 3,
+    "Features": 3
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 15,
+    "Threshold (Major/Severe)": "14 / 28",
+    "Attack": "+2",
+    "Damage": "2d10+4",
+    "Hitpoints": 7,
+    "Stress": 4,
+    "Features": 3
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 17,
+    "Threshold (Major/Severe)": "23 / 40",
+    "Attack": "+3",
+    "Damage": "3d8+4",
+    "Hitpoints": 8,
+    "Stress": 4,
+    "Features": 4
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 20,
+    "Threshold (Major/Severe)": "38 / 71",
+    "Attack": "+5",
+    "Damage": "4d10+12",
+    "Hitpoints": 8,
+    "Stress": 5,
+    "Features": 4
+  },
+  {
+    "Role (Type)": "Horde",
+    "Tier": 1,
+    "Difficulty": 10,
+    "Threshold (Major/Severe)": "6 / 11",
+    "Attack": -1,
+    "Damage": "1d8+2",
+    "Hitpoints": 6,
+    "Stress": 3,
+    "Features": 2
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 14,
+    "Threshold (Major/Severe)": "10 / 20",
+    "Attack": "+0",
+    "Damage": "2d6+4",
+    "Hitpoints": 5,
+    "Stress": 3,
+    "Features": 3
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 16,
+    "Threshold (Major/Severe)": "15 / 25",
+    "Attack": "+1",
+    "Damage": "3d12+10",
+    "Hitpoints": 6,
+    "Stress": 3,
+    "Features": 2
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 17,
+    "Threshold (Major/Severe)": "25 / 45",
+    "Attack": "+2",
+    "Damage": "4d8+12",
+    "Hitpoints": 8,
+    "Stress": 5,
+    "Features": 4
+  },
+  {
+    "Role (Type)": "Minion",
+    "Tier": 1,
+    "Difficulty": 9,
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": -1,
+    "Damage": "2",
+    "Hitpoints": 1,
+    "Stress": 1,
+    "Features": 2
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 13,
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": "+0",
+    "Damage": "5",
+    "Hitpoints": 1,
+    "Stress": 1,
+    "Features": 2
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 15,
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": "+0",
+    "Damage": "7",
+    "Hitpoints": 1,
+    "Stress": 1,
+    "Features": 2
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 18,
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": "+2",
+    "Damage": "11",
+    "Hitpoints": 1,
+    "Stress": 2,
+    "Features": 3
+  },
+  {
+    "Role (Type)": "Solo",
+    "Tier": 1,
+    "Difficulty": 13,
+    "Threshold (Major/Severe)": "8 / 15",
+    "Attack": "+3",
+    "Damage": "1d12+3",
+    "Hitpoints": 8,
+    "Stress": 3,
+    "Features": 5
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 15,
+    "Threshold (Major/Severe)": "12 / 24",
+    "Attack": "+3",
+    "Damage": "2d12+5",
+    "Hitpoints": 9,
+    "Stress": 5,
+    "Features": 5
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 18,
+    "Threshold (Major/Severe)": "20 / 37",
+    "Attack": "+4",
+    "Damage": "3d12+10",
+    "Hitpoints": 11,
+    "Stress": 6,
+    "Features": 5
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 19,
+    "Threshold (Major/Severe)": "35 / 65",
+    "Attack": "+7",
+    "Damage": "4d12+12",
+    "Hitpoints": 9,
+    "Stress": 6,
+    "Features": 5
+  },
+  {
+    "Role (Type)": "Leader",
+    "Tier": 1,
+    "Difficulty": 13,
+    "Threshold (Major/Severe)": "7 / 13",
+    "Attack": "+3",
+    "Damage": "1d10+3",
+    "Hitpoints": 6,
+    "Stress": 3,
+    "Features": 4
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 16,
+    "Threshold (Major/Severe)": "12 / 25",
+    "Attack": "+4",
+    "Damage": "2d10+4",
+    "Hitpoints": 6,
+    "Stress": 4,
+    "Features": 4
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 17,
+    "Threshold (Major/Severe)": "21 / 38",
+    "Attack": "+4",
+    "Damage": "3d10+8",
+    "Hitpoints": 7,
+    "Stress": 5,
+    "Features": 4
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 21,
+    "Threshold (Major/Severe)": "35 / 68",
+    "Attack": "+7",
+    "Damage": "4d12+12",
+    "Hitpoints": 8,
+    "Stress": 7,
+    "Features": 5
+  },
+  {
+    "Role (Type)": "Ranged",
+    "Tier": 1,
+    "Difficulty": 11,
+    "Threshold (Major/Severe)": "4 / 7",
+    "Attack": "+1",
+    "Damage": "1d8+2",
+    "Hitpoints": 3,
+    "Stress": 2,
+    "Features": 1
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 15,
+    "Threshold (Major/Severe)": "8 / 18",
+    "Attack": "+3",
+    "Damage": "2d10+4",
+    "Hitpoints": 4,
+    "Stress": 4,
+    "Features": 4
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 17,
+    "Threshold (Major/Severe)": "19 / 31",
+    "Attack": "+4",
+    "Damage": "3d10+7",
+    "Hitpoints": 6,
+    "Stress": 5,
+    "Features": 3
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 19,
+    "Threshold (Major/Severe)": "25 / 45",
+    "Attack": "+4",
+    "Damage": "4d8+12",
+    "Hitpoints": 3,
+    "Stress": 2,
+    "Features": 2
+  },
+  {
+    "Role (Type)": "Skulk",
+    "Tier": 1,
+    "Difficulty": 11,
+    "Threshold (Major/Severe)": "5 / 10",
+    "Attack": "+1",
+    "Damage": "1d6+1",
+    "Hitpoints": 4,
+    "Stress": 2,
+    "Features": 2
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 14,
+    "Threshold (Major/Severe)": "9 / 18",
+    "Attack": "+2",
+    "Damage": "2d8+3",
+    "Hitpoints": 4,
+    "Stress": 4,
+    "Features": 4
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 16,
+    "Threshold (Major/Severe)": "16 / 32",
+    "Attack": "+3",
+    "Damage": "3d6+4",
+    "Hitpoints": 6,
+    "Stress": 4,
+    "Features": 3
+  },
+  {
+    "Tier": 4,
+    "Difficulty": "N/A",
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": "N/A",
+    "Damage": "N/A",
+    "Hitpoints": "N/A",
+    "Stress": "N/A",
+    "Features": "N/A"
+  },
+  {
+    "Role (Type)": "Support",
+    "Tier": 1,
+    "Difficulty": 13,
+    "Threshold (Major/Severe)": "5 / 9",
+    "Attack": "+2",
+    "Damage": "1d6+2",
+    "Hitpoints": 4,
+    "Stress": 4,
+    "Features": 2
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 14,
+    "Threshold (Major/Severe)": "9 / 18",
+    "Attack": "+2",
+    "Damage": "2d6+2",
+    "Hitpoints": 4,
+    "Stress": 6,
+    "Features": 4
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 16,
+    "Threshold (Major/Severe)": "17 / 32",
+    "Attack": "+2",
+    "Damage": "3d6+3",
+    "Hitpoints": 5,
+    "Stress": 4,
+    "Features": 3
+  },
+  {
+    "Tier": 4,
+    "Difficulty": 19,
+    "Threshold (Major/Severe)": "27 / 45",
+    "Attack": "+6",
+    "Damage": "4d8+11",
+    "Hitpoints": 5,
+    "Stress": 4,
+    "Features": 4
+  },
+  {
+    "Role (Type)": "Social",
+    "Tier": 1,
+    "Difficulty": 13,
+    "Threshold (Major/Severe)": "5 / 9",
+    "Attack": -3,
+    "Damage": "1d4+1",
+    "Hitpoints": 3,
+    "Stress": 4,
+    "Features": 3
+  },
+  {
+    "Tier": 2,
+    "Difficulty": 14,
+    "Threshold (Major/Severe)": "8 / 16",
+    "Attack": -1,
+    "Damage": "1d6+2",
+    "Hitpoints": 4,
+    "Stress": 4,
+    "Features": 2
+  },
+  {
+    "Tier": 3,
+    "Difficulty": 16,
+    "Threshold (Major/Severe)": "16 / 32",
+    "Attack": "+0",
+    "Damage": "3d8+4",
+    "Hitpoints": 6,
+    "Stress": 5,
+    "Features": 3
+  },
+  {
+    "Tier": 4,
+    "Difficulty": "N/A",
+    "Threshold (Major/Severe)": "N/A",
+    "Attack": "N/A",
+    "Damage": "N/A",
+    "Hitpoints": "N/A",
+    "Stress": "N/A",
+    "Features": "N/A"
+  }
+]

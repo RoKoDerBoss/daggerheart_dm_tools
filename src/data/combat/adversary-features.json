@@ -1,0 +1,102 @@
+[
+  {
+    "Category": "General",
+    "Feature Type": "Momentum",
+    "Description": "Reaction: When the adversary successfully attacks a PC, the GM gains a Fear point."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Relentless (X)",
+    "Description": "Passive: Allows the adversary to be put in the spotlight up to X times per GM turn (under normal Fear costs)."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Terrifying",
+    "Description": "Passive: When the adversary successfully attacks, PCs in range lose Hope and/or the GM gains Fear."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Summon Allies",
+    "Description": "Action: Calls additional adversaries to the battlefield, often through the use of Fear or Stress."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Inflict Condition",
+    "Description": "Action: A targeted attack or effect that inflicts one or more PCs with a negative condition like Restrained, Vulnerable, or Dizzied."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Area Attack",
+    "Description": "Action: An attack that affects all targets in a specific area (e.g., \"Very Close\" or \"in a path\") instead of a single target."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Damage Reduction",
+    "Description": "Passive: Reduces damage taken (often physical) by a fixed amount or halves it."
+  },
+  {
+    "Category": "General",
+    "Feature Type": "Counterattack",
+    "Description": "Reaction: Allows the adversary to make an immediate attack against a creature that has dealt damage to it."
+  },
+  {
+    "Category": "Bruiser",
+    "Feature Type": "Move Opponents",
+    "Description": "Features that knock back targets or otherwise manipulate their position on the battlefield."
+  },
+  {
+    "Category": "Bruiser",
+    "Feature Type": "Slow",
+    "Description": "Passive: The adversary requires a round to prepare its action, which is often balanced by powerful abilities."
+  },
+  {
+    "Category": "Horde",
+    "Feature Type": "Horde (X)",
+    "Description": "Passive: The horde's standard damage is reduced to value X once it has lost half or more of its Hit Points."
+  },
+  {
+    "Category": "Leader",
+    "Feature Type": "Lead Allies",
+    "Description": "Action: Allows putting multiple allies in the spotlight alongside itself, often using Fear or Stress."
+  },
+  {
+    "Category": "Minion",
+    "Feature Type": "Minion (X)",
+    "Description": "Passive: The adversary is defeated by any damage. For every X damage a PC deals, an additional minion in range is defeated."
+  },
+  {
+    "Category": "Minion",
+    "Feature Type": "Group Attack",
+    "Description": "Action: All minions of the same type attack a target with a single, shared attack roll and combine their damage."
+  },
+  {
+    "Category": "Skulk",
+    "Feature Type": "Hide & Bonuses",
+    "Description": "A combination of an action to become Hidden and a passive trait that grants bonus damage when attacking from hiding or with advantage."
+  },
+  {
+    "Category": "Skulk",
+    "Feature Type": "High Mobility",
+    "Description": "Abilities that enable fast and often unconventional movement, such as teleporting between shadows or ignoring difficult terrain."
+  },
+  {
+    "Category": "Solo",
+    "Feature Type": "Phase Change",
+    "Description": "Reaction: When the adversary is defeated, it is replaced by a new stat block (a new phase) with different abilities."
+  },
+  {
+    "Category": "Solo",
+    "Feature Type": "Countdown Mechanics",
+    "Description": "Long-term effects that trigger after a certain number of rounds or in response to player actions and often have devastating impacts."
+  },
+  {
+    "Category": "Support",
+    "Feature Type": "Strengthen Allies",
+    "Description": "Action: Grants allies positive effects like damage resistance, condition removal, or other bonuses."
+  },
+  {
+    "Category": "Support",
+    "Feature Type": "Hinder Opponents",
+    "Description": "Action: Controls the battlefield (e.g., through thorn vines) or inflicts opponents with negative conditions without primarily dealing damage."
+  }
+]

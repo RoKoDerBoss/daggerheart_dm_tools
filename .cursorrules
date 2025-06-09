@@ -1,0 +1,61 @@
+# Daggerheart DM Tools - Cursor Rules
+
+## Project Overview
+This is a Next.js web application for Daggerheart RPG Dungeon Masters, providing tools for monster generation, loot creation, and encounter building.
+
+## Code Style & Standards
+
+### TypeScript/React
+- Use TypeScript for all new files
+- Prefer functional components with hooks
+- Use proper type definitions from @/lib/monster-utils and @/data
+- Follow the existing component patterns (see MonsterBuilderComponent.tsx)
+
+### Styling
+- Use Tailwind CSS for all styling
+- Follow the existing design system in globals.css
+- Use custom CSS variables: --accent, --background, --foreground, etc.
+- Maintain responsive design with mobile-first approach
+- Use consistent spacing: p-4 sm:p-6, mb-4 sm:mb-6, etc.
+
+### Component Structure
+- Keep components in src/components/
+- Use default exports for page components
+- Use named exports for utility components
+- Follow the pattern: imports → interfaces → component → export
+
+### Mobile Responsiveness
+- Always consider mobile users first
+- Use responsive breakpoints: sm: (640px), md: (768px), lg: (1024px)
+- Ensure touch targets are minimum 44px
+- Test on mobile viewport during development
+
+### Daggerheart-Specific Rules
+- Monster stats follow the official adversary tables
+- Use proper tier and type classifications
+- Maintain fantasy theme throughout UI
+- Export functions should format data for game use
+
+### File Organization
+- Tools in src/components/tools/
+- Utilities in src/lib/
+- Data in src/data/
+- Types should be properly exported and imported
+
+## When Making Changes
+1. Preserve existing functionality
+2. Maintain mobile responsiveness
+3. Follow the established color scheme (gold accent, dark purple theme)
+4. Add proper TypeScript types
+5. Consider accessibility (proper ARIA labels, semantic HTML)
+
+## Performance
+- Use React.memo() for expensive components
+- Optimize re-renders with useCallback/useMemo when needed
+- Keep bundle size reasonable
+
+## Testing & Validation
+- Test on mobile and desktop viewports
+- Verify all interactive elements work with touch
+- Ensure proper keyboard navigation
+- Validate exported data matches game format 

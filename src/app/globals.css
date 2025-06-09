@@ -75,11 +75,13 @@ body {
   background: linear-gradient(90deg, var(--accent), var(--accent-hover), var(--accent));
 }
 
-.fantasy-card:hover {
-  border-color: var(--accent);
-  box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
-  transform: translateY(-2px);
-  transition: all 0.3s ease;
+@media (hover: hover) and (pointer: fine) {
+  .fantasy-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
+    transform: translateY(-1px);
+    transition: all 0.3s ease;
+  }
 }
 
 /* Button styles */
@@ -95,6 +97,7 @@ body {
 }
 
 .btn-primary:hover {
+  background: linear-gradient(135deg, var(--accent-hover), var(--accent));
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
 }
@@ -135,6 +138,19 @@ body {
   border: 2px solid var(--card-border);
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure Tailwind hover utilities work properly */
+.hover\:bg-accent\/80:hover {
+  background-color: rgba(251, 191, 36, 0.8) !important;
+}
+
+.hover\:bg-accent\/10:hover {
+  background-color: rgba(251, 191, 36, 0.1) !important;
+}
+
+.hover\:bg-muted\/80:hover {
+  background-color: rgba(148, 163, 184, 0.8) !important;
 }
 
 /* Custom scrollbar */
@@ -190,6 +206,16 @@ body {
   
   .bg-accent-hover {
     background: var(--accent-hover);
+  }
+  
+  .from-accent {
+    --tw-gradient-from: var(--accent);
+    --tw-gradient-to: rgba(251, 191, 36, 0);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  
+  .to-accent-hover {
+    --tw-gradient-to: var(--accent-hover);
   }
   
   .border-accent {

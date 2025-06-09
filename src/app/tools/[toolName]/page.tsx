@@ -4,6 +4,7 @@ import ToolLayout from '@/components/ToolLayout'
 import LootGeneratorComponent from '@/components/tools/LootGeneratorComponent'
 import BattlePointsCalculatorComponent from '@/components/tools/BattlePointsCalculatorComponent'
 import FearTrackerComponent from '@/components/tools/FearTrackerComponent'
+import MonsterBuilderComponent from '@/components/tools/MonsterBuilderComponent'
 
 interface ToolPageProps {
   params: Promise<{
@@ -28,6 +29,8 @@ export default async function ToolPage({ params }: ToolPageProps) {
         return <BattlePointsCalculatorComponent />
       case 'FearTrackerComponent':
         return <FearTrackerComponent />
+      case 'MonsterBuilderComponent':
+        return <MonsterBuilderComponent />
       default:
         return (
           <div className="fantasy-card p-8">
