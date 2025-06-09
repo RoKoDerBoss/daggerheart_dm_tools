@@ -11,7 +11,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-5xl lg:text-7xl font-bold mb-6">
-              <span className="text-accent font-cormorant-upright">Daggerheart</span>
+              <span className="text-accent font-cormorant">Daggerheart</span>
               <br />
               <span className="text-foreground">DM Tools</span>
             </h1>

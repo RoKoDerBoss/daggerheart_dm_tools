@@ -10,7 +10,7 @@ export default function ToolsPage() {
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-cormorant-upright font-bold text-foreground mb-6">
+            <h1 className="text-5xl lg:text-6xl font-cormorant font-bold text-foreground mb-6">
               DM <span className="text-accent">Toolkit</span>
             </h1>
             <p className="text-xl text-muted max-w-3xl mx-auto leading-relaxed">

@@ -56,10 +56,7 @@ module.exports = {
   			}
   		},
   		fontFamily: {
-  			'cormorant-upright': [
-  				'Cormorant Upright"',
-  				'serif'
-  			]
+  			'cormorant': ['var(--font-cormorant)', 'Georgia', 'serif']
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

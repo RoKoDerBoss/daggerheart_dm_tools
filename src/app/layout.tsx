@@ -1,9 +1,14 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Cormorant_Upright } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
+const cormorantUpright = Cormorant_Upright({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-cormorant'
+})
 
 const siteUrl = process.env.SITE_URL || 'https://your-domain.netlify.app'
 
@@ -109,13 +114,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
-        {/* Preload Cormorant Upright font for better performance */}
-        <link 
-          rel="preload" 
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&display=swap" 
-          as="style" 
-        />
-        
         {/* Favicon and app icons */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
@@ -123,7 +121,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
       </head>
       <body
-        className={`${inter.className} bg-fantasy text-foreground antialiased`}
+        className={`${inter.className} ${cormorantUpright.variable} bg-fantasy text-foreground antialiased`}
         suppressHydrationWarning
       >
         <Navbar />

@@ -549,7 +549,7 @@ HP: ${monster.stats.hitpoints} | Stress: ${monster.stats.stress}`
           {/* Single Monster Display */}
           {currentMonster && (
             <div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">Generated Monster</h3>
+              <h3 className="text-2xl font-cormorant font-bold text-foreground mb-4">Generated Monster</h3>
               <div className="flex justify-center">
                 {renderMonsterCard(currentMonster)}
               </div>
@@ -560,7 +560,7 @@ HP: ${monster.stats.hitpoints} | Stress: ${monster.stats.stress}`
           {generatedMonsters.length > 0 && (
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-2xl font-bold text-foreground">
+                <h3 className="text-2xl font-cormorant font-bold text-foreground">
                   Generated Monsters ({generatedMonsters.length})
                 </h3>
                 <button
@@ -582,7 +582,7 @@ HP: ${monster.stats.hitpoints} | Stress: ${monster.stats.stress}`
         {!currentMonster && generatedMonsters.length === 0 && (
           <div className="text-center py-12 bg-muted/10 rounded-lg">
             <div className="text-6xl mb-4">🎲</div>
-            <h3 className="text-xl font-bold text-foreground mb-2">
+            <h3 className="text-xl font-cormorant font-bold text-foreground mb-2">
               Ready to Create Monsters
             </h3>
             <p className="text-muted">
