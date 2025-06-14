@@ -44,7 +44,7 @@ export const BATTLE_ADJUSTMENTS: Record<string, BattleAdjustment> = {
   },
   noBruisersEtc: {
     id: 'noBruisersEtc',
-    name: 'No Bruisers/Hordes/Leaders/Solos',
+    name: 'No Bruisers, Hordes, Leaders, Solos',
     description: 'Only using basic adversary types limits tactical complexity.',
     modifier: 1,
     category: 'harder'

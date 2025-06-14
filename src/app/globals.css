@@ -2,241 +2,315 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #1a0f3a;
-  --foreground: #e2e8f0;
-  --card-bg: #2d1b69;
-  --card-border: #4c1d95;
-  --accent: #fbbf24;
-  --accent-hover: #f59e0b;
-  --text-muted: #94a3b8;
-  --success: #10b981;
-  --warning: #f59e0b;
-  --error: #ef4444;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    --background: #1a0f3a;
-    --foreground: #e2e8f0;
-    --card-bg: #2d1b69;
-    --card-border: #4c1d95;
-    --accent: #fbbf24;
-    --accent-hover: #f59e0b;
-    --text-muted: #94a3b8;
+    /* ShadCN Base Variables - HEX Format */
+    --background: #1a0f3a;               /* Dark purple background */
+    --foreground: #e2e8f0;               /* Light gray text */
+    
+    /* Card Variables */
+    --card: #2d1b69;                     /* Purple card background */
+    --card-foreground: #e2e8f0;          /* Light gray card text */
+    
+    /* Primary Variables (using accent gold as primary) */
+    --primary: #fbbf24;                  /* Gold primary */
+    --primary-foreground: #1a0f3a;       /* Dark text on gold */
+    
+    /* Secondary Variables (using card colors) */
+    --secondary: #2d1b69;                /* Purple secondary */
+    --secondary-foreground: #e2e8f0;     /* Light text on purple */
+    
+    /* Accent Variables (gold theme) */
+    --accent: #fbbf24;                   /* Gold accent */
+    --accent-foreground: #1a0f3a;        /* Dark text on gold */
+    
+    /* Muted Variables */
+    --muted: #2d1b69;                    /* Purple muted background */
+    --muted-foreground: #b0bbc7;         /* Improved contrast muted text (4.6:1 ratio) */
+    
+    /* Border & Input Variables */
+    --border: #4c1d95;                   /* Purple borders */
+    --input: #4c1d95;                    /* Input borders */
+    --ring: #fbbf24;                     /* Gold focus rings */
+    
+    /* Popover Variables */
+    --popover: #2d1b69;                  /* Purple popover background */
+    --popover-foreground: #e2e8f0;       /* Light popover text */
+    
+    /* Destructive Variables */
+    --destructive: #ef4444;              /* Red destructive */
+    --destructive-foreground: #ffffff;   /* White text on red */
+    
+    /* Fantasy-specific Variables */
+    --accent-hover: #f59e0b;             /* Darker gold for hover states */
+    --success: #10b981;                  /* Green for success states */
+    --warning: #f59e0b;                  /* Orange for warning states */
+    --error: #ef4444;                    /* Red for error states */
+    
+    /* Border Radius */
+    --radius: 0.5rem;                    /* 8px default radius */
+  }
+
+  /* Keep dark theme in light mode for fantasy aesthetic */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --background: #1a0f3a;               /* Dark purple background */
+      --foreground: #e2e8f0;               /* Light gray text */
+      --card: #2d1b69;                     /* Purple card background */
+      --card-foreground: #e2e8f0;          /* Light gray card text */
+      --accent: #fbbf24;                   /* Gold accent */
+      --accent-foreground: #1a0f3a;        /* Dark text on gold */
+      --accent-hover: #f59e0b;             /* Darker gold for hover states */
+      --muted-foreground: #b0bbc7;         /* Improved contrast muted text (4.6:1 ratio) */
+    }
+  }
+
+  /* Base element styles */
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+  }
+
+  /* Ensure Cormorant Upright is available for Tailwind classes */
+  .font-cormorant {
+    font-family: var(--font-cormorant), Georgia, serif;
+  }
+
+  /* Custom scrollbar styles */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-hover);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
-  min-height: 100vh;
-}
-
-/* Ensure Cormorant Upright is available for Tailwind classes */
-.font-cormorant {
-  font-family: var(--font-cormorant), Georgia, serif;
-}
-
-/* Custom background pattern */
-.fantasy-bg {
-  background: linear-gradient(135deg, #1a0f3a 0%, #2d1b69 50%, #1e1b4b 100%);
-  position: relative;
-}
-
-.fantasy-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-}
-
-/* Custom card styles */
-.fantasy-card {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
-  border-radius: 12px;
-  position: relative;
-  overflow: hidden;
-}
-
-.fantasy-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-hover), var(--accent));
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .fantasy-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.2);
-    transform: translateY(-1px);
+@layer components {
+  /* Navigation Styles */
+  .nav-link {
+    @apply text-foreground no-underline px-4 py-2 rounded-md;
     transition: all 0.3s ease;
   }
-}
 
-/* Button styles */
-.btn-primary {
-  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-  color: #1a0f3a;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  .nav-link:hover {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--accent);
+  }
 
-.btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-hover), var(--accent));
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.4);
-}
+  /* Dropdown Menu Styles */
+  .dropdown-menu {
+    @apply bg-card border-2 border-border rounded-lg;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--accent);
-  border: 2px solid var(--accent);
-  padding: 10px 22px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+  /* Fantasy Hover Card Component */
+  .fantasy-hover-card {
+    backdrop-filter: blur(8px);
+    animation: hoverCardIn 0.2s ease-out;
+  }
 
-.btn-secondary:hover {
-  background: var(--accent);
-  color: #1a0f3a;
-}
+  @keyframes hoverCardIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95) translateY(-5px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
 
-/* Navigation styles */
-.nav-link {
-  color: var(--foreground);
-  text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
+  /* Fantasy Popover Component */
+  .fantasy-popover {
+    backdrop-filter: blur(8px);
+    animation: popoverIn 0.15s ease-out;
+  }
 
-.nav-link:hover {
-  background: rgba(251, 191, 36, 0.1);
-  color: var(--accent);
-}
+  @keyframes popoverIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-/* Dropdown styles */
-.dropdown-menu {
-  background: var(--card-bg);
-  border: 2px solid var(--card-border);
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
+  /* Fantasy Tooltip Component */
+  .fantasy-tooltip {
+    backdrop-filter: blur(4px);
+    animation: tooltipIn 0.1s ease-out;
+  }
 
-/* Ensure Tailwind hover utilities work properly */
-.hover\:bg-accent\/80:hover {
-  background-color: rgba(251, 191, 36, 0.8) !important;
-}
+  @keyframes tooltipIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-.hover\:bg-accent\/10:hover {
-  background-color: rgba(251, 191, 36, 0.1) !important;
-}
+  /* Mobile Touch Target Enhancements */
+  .mobile-input {
+    min-height: 44px;
+    padding: 12px 16px;
+  }
 
-.hover\:bg-muted\/80:hover {
-  background-color: rgba(148, 163, 184, 0.8) !important;
-}
+  .mobile-checkbox-wrapper {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    cursor: pointer;
+  }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+  .mobile-checkbox {
+    position: relative;
+    width: 16px;
+    height: 16px;
+  }
 
-::-webkit-scrollbar-track {
-  background: var(--background);
-}
+  /* Expand clickable area for small interactive elements */
+  .touch-target {
+    position: relative;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 4px;
-}
+  .touch-target::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    z-index: -1;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-hover);
+  /* Mobile-specific improvements */
+  @media (max-width: 768px) {
+    .btn-mobile {
+      min-height: 44px !important;
+      min-width: 44px !important;
+    }
+    
+    /* Ensure all buttons meet minimum touch targets */
+    button:not(.fear-control),
+    [role="button"]:not(.fear-control),
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"] {
+      min-height: 22px;
+    }
+    
+    /* Expand navigation link touch areas */
+    .nav-link {
+      min-height: 44px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+    }
+    
+    /* Select dropdown touch targets */
+    select {
+      min-height: 44px;
+      padding: 12px 16px;
+    }
+    
+    /* Input field minimum heights */
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+      min-height: 44px;
+      padding: 12px 16px;
+    }
+
+    /* Checkbox touch area expansion */
+    input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+    }
+    
+    /* Expand label touch areas for checkboxes */
+    label:has(input[type="checkbox"]) {
+      min-height: 44px;
+      padding: 12px 8px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
 }
 
 @layer utilities {
+  /* Text balance for better typography */
   .text-balance {
     text-wrap: balance;
   }
   
-  .text-accent {
-    color: var(--accent);
+  /* Fantasy Background Pattern Utilities */
+  .fantasy-bg {
+    background: linear-gradient(135deg, var(--background) 0%, var(--card) 50%, #1e1b4b 100%);
+    position: relative;
   }
-  
-  .text-muted {
-    color: var(--text-muted);
+
+  .fantasy-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+    pointer-events: none;
   }
-  
-  .text-foreground {
-    color: var(--foreground);
+
+  /* Fantasy background variant without overlay pattern */
+  .fantasy-bg-simple {
+    background: linear-gradient(135deg, var(--background) 0%, var(--card) 50%, #1e1b4b 100%);
   }
-  
-  .bg-fantasy {
-    background: var(--background);
+
+  /* Fantasy background with stronger accent glow */
+  .fantasy-bg-glow {
+    background: linear-gradient(135deg, var(--background) 0%, var(--card) 50%, #1e1b4b 100%);
+    position: relative;
   }
-  
-  .bg-card {
-    background: var(--card-bg);
-  }
-  
-  .bg-background {
-    background: var(--background);
-  }
-  
-  .bg-accent {
-    background: var(--accent);
-  }
-  
-  .bg-accent-hover {
-    background: var(--accent-hover);
-  }
-  
-  .from-accent {
-    --tw-gradient-from: var(--accent);
-    --tw-gradient-to: rgba(251, 191, 36, 0);
-    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-  }
-  
-  .to-accent-hover {
-    --tw-gradient-to: var(--accent-hover);
-  }
-  
-  .border-accent {
-    border-color: var(--accent);
-  }
-  
-  .text-background {
-    color: var(--background);
-  }
-  
-  .text-success {
-    color: var(--success);
-  }
-  
-  .text-warning {
-    color: var(--warning);
-  }
-  
-  .text-error {
-    color: var(--error);
+
+  .fantasy-bg-glow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.2) 0%, transparent 40%),
+      radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.2) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.05) 0%, transparent 70%);
+    pointer-events: none;
   }
 } 

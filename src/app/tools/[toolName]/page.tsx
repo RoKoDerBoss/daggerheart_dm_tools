@@ -5,6 +5,9 @@ import LootGeneratorComponent from '@/components/tools/LootGeneratorComponent'
 import BattlePointsCalculatorComponent from '@/components/tools/BattlePointsCalculatorComponent'
 import FearTrackerComponent from '@/components/tools/FearTrackerComponent'
 import MonsterBuilderComponent from '@/components/tools/MonsterBuilderComponent'
+import { Card, CardContent } from '@/components/ui/card'
+import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
+import { Badge } from '@/components/ui/badge'
 
 interface ToolPageProps {
   params: Promise<{
@@ -33,21 +36,22 @@ export default async function ToolPage({ params }: ToolPageProps) {
         return <MonsterBuilderComponent />
       default:
         return (
-          <div className="fantasy-card p-8">
-            <div className="text-center py-12">
-              <div className="text-6xl mb-4">{tool.icon}</div>
-              <h3 className="text-2xl font-bold text-foreground mb-4">
-                {tool.name} Interface
-              </h3>
-              <p className="text-muted mb-6">
-                The interactive tool interface will be implemented here. 
-                This area will contain the actual tool functionality.
-              </p>
-              <div className="inline-block px-4 py-2 bg-accent/20 text-accent rounded-lg font-medium">
-                Component: {tool.component || `${tool.id}-component`}
+          <Card className="fantasy">
+            <CardContent className="p-8">
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">{tool.icon}</div>
+                <h3 className="text-2xl font-bold text-foreground mb-4">
+                  {tool.name}
+                </h3>
+                <p className="text-muted-foreground mb-6">
+                  The interactive tool will be implemented here.
+                </p>
+                <Badge variant="secondary" className="bg-accent/20 text-accent border-accent/30">
+                  Tool: {tool.component || `${tool.id}`}
+                </Badge>
               </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         )
     }
   }
@@ -61,33 +65,29 @@ export default async function ToolPage({ params }: ToolPageProps) {
 
           {/* Tool Status */}
           {tool.status === 'coming-soon' && (
-            <div className="bg-accent/10 border-2 border-accent/30 rounded-lg p-6 mt-8">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="text-2xl">🚧</div>
-                <h3 className="text-lg font-semibold text-accent">
-                  Tool Under Development
-                </h3>
-              </div>
-              <p className="text-muted mb-4">
+            <Alert className="bg-accent/10 border-accent/30 mt-8">
+              <div className="text-2xl mr-2">🚧</div>
+              <AlertTitle className="text-accent font-semibold">
+                Tool Under Development
+              </AlertTitle>
+              <AlertDescription className="text-muted-foreground">
                 This tool is currently being built with all the features listed above. 
                 We&apos;re working hard to bring you the best possible experience for your Daggerheart campaigns.
-              </p>
-            </div>
+              </AlertDescription>
+            </Alert>
           )}
 
           {tool.status === 'beta' && (
-            <div className="bg-warning/10 border-2 border-warning/30 rounded-lg p-6 mt-8">
-              <div className="flex items-center space-x-3 mb-3">
-                <div className="text-2xl">⚠️</div>
-                <h3 className="text-lg font-semibold text-warning">
-                  Beta Tool
-                </h3>
-              </div>
-              <p className="text-muted mb-4">
+            <Alert className="bg-yellow-500/10 border-yellow-500/30 mt-8">
+              <div className="text-2xl mr-2">⚠️</div>
+              <AlertTitle className="text-yellow-600 dark:text-yellow-500 font-semibold">
+                Beta Tool
+              </AlertTitle>
+              <AlertDescription className="text-muted-foreground">
                 This tool is in beta. Some features may be incomplete or subject to change. 
                 Please report any issues you encounter.
-              </p>
-            </div>
+              </AlertDescription>
+            </Alert>
           )}
         </div>
       </div>

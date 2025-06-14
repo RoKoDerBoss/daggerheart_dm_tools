@@ -3,9 +3,15 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { getAllTools } from '@/config/tools'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
 
 export default function Navbar() {
-  const [isToolsDropdownOpen, setIsToolsDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const tools = getAllTools()
 
@@ -15,62 +21,54 @@ export default function Navbar() {
         <div className="flex justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl sm:text-3xl font-cormorant font-bold text-accent hover:text-accent/80 transition-colors">
-              ⚔️ Daggerheart DM Tools
+            <Link href="/">
+              <div className="flex items-center gap-1">
+                <span className="text-xl sm:text-3xl">⚔️</span>
+                <span className="text-2xl sm:text-4xl font-cormorant font-bold text-accent">Daggerheart DM Tools</span>
+              </div>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            <Link href="/" className="nav-link font-cormorant-upright text-xl">
+            <Link href="/" className="nav-link font-cormorant text-2xl font-bold">
               Home
             </Link>
             
             {/* Tools Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsToolsDropdownOpen(!isToolsDropdownOpen)}
-                onBlur={() => setTimeout(() => setIsToolsDropdownOpen(false), 150)}
-                className="nav-link flex items-center space-x-1  font-cormorant-upright text-xl"
-              >
+            <DropdownMenu>
+              <DropdownMenuTrigger className="nav-link flex items-center space-x-1 font-cormorant text-2xl font-bold">
                 <span>Tools</span>
                 <svg 
-                  className={`w-4 h-4 transition-transform ${isToolsDropdownOpen ? 'rotate-180' : ''}`}
+                  className="w-4 h-4"
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
-              
-              {isToolsDropdownOpen && (
-                <div className="absolute top-full right-0 mt-2 w-56 dropdown-menu">
-                  <div className="py-2">
-                    {tools.map((tool) => (
-                      <Link
-                        key={tool.id}
-                        href={`/tools/${tool.id}`}
-                        className="block px-4 py-2 text-sm text-foreground hover:bg-accent/10 hover:text-accent transition-colors"
-                        onClick={() => setIsToolsDropdownOpen(false)}
-                      >
-                        <div className="flex items-center space-x-2">
-                          <span>{tool.icon}</span>
-                          <span>{tool.name}</span>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end">
+                {tools.map((tool) => (
+                  <DropdownMenuItem key={tool.id} asChild>
+                    <Link
+                      href={`/tools/${tool.id}`}
+                      className="flex items-center space-x-2 px-4 py-2 text-sm text-foreground hover:bg-accent/10 hover:text-accent transition-colors cursor-pointer"
+                    >
+                      <span>{tool.icon}</span>
+                      <span>{tool.name}</span>
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button
+            <Button
+              variant="ghost"
+              size="icon"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="nav-link p-2"
             >
@@ -81,7 +79,7 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
 
@@ -105,7 +103,7 @@ export default function Navbar() {
                   <Link
                     key={tool.id}
                     href={`/tools/${tool.id}`}
-                    className="block px-4 py-2 text-sm text-muted hover:text-accent transition-colors"
+                    className="block px-4 py-2 text-sm text-muted-foreground hover:text-accent transition-colors"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     <div className="flex items-center space-x-2">

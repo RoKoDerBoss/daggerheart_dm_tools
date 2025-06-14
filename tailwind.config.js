@@ -9,51 +9,44 @@ module.exports = {
   theme: {
   	extend: {
   		colors: {
-  			background: 'hsl(var(--background))',
-  			foreground: 'hsl(var(--foreground))',
+  			background: '#1a0f3a',
+  			foreground: '#e2e8f0',
   			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
+  				DEFAULT: '#2d1b69',
+  				foreground: '#e2e8f0'
   			},
-  			'card-border': 'var(--card-border)',
+  			'card-border': '#4c1d95',
   			accent: {
-  				DEFAULT: 'hsl(var(--accent))',
-  				foreground: 'hsl(var(--accent-foreground))'
+  				DEFAULT: '#fbbf24',
+  				foreground: '#1a0f3a',
+  				hover: '#f59e0b'
   			},
-  			'accent-hover': 'var(--accent-hover)',
   			muted: {
-  				DEFAULT: 'hsl(var(--muted))',
-  				foreground: 'hsl(var(--muted-foreground))'
+  				DEFAULT: '#2d1b69',
+  				foreground: '#b0bbc7'
   			},
-  			success: 'var(--success)',
-  			warning: 'var(--warning)',
-  			error: 'var(--error)',
+  			success: '#10b981',
+  			warning: '#f59e0b',
+  			error: '#ef4444',
   			popover: {
-  				DEFAULT: 'hsl(var(--popover))',
-  				foreground: 'hsl(var(--popover-foreground))'
+  				DEFAULT: '#2d1b69',
+  				foreground: '#e2e8f0'
   			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				DEFAULT: '#fbbf24',
+  				foreground: '#1a0f3a'
   			},
   			secondary: {
-  				DEFAULT: 'hsl(var(--secondary))',
-  				foreground: 'hsl(var(--secondary-foreground))'
+  				DEFAULT: '#2d1b69',
+  				foreground: '#e2e8f0'
   			},
   			destructive: {
-  				DEFAULT: 'hsl(var(--destructive))',
-  				foreground: 'hsl(var(--destructive-foreground))'
+  				DEFAULT: '#ef4444',
+  				foreground: '#ffffff'
   			},
-  			border: 'hsl(var(--border))',
-  			input: 'hsl(var(--input))',
-  			ring: 'hsl(var(--ring))',
-  			chart: {
-  				'1': 'hsl(var(--chart-1))',
-  				'2': 'hsl(var(--chart-2))',
-  				'3': 'hsl(var(--chart-3))',
-  				'4': 'hsl(var(--chart-4))',
-  				'5': 'hsl(var(--chart-5))'
-  			}
+  			border: '#4c1d95',
+  			input: '#4c1d95',
+  			ring: '#fbbf24'
   		},
   		fontFamily: {
   			'cormorant': ['var(--font-cormorant)', 'Georgia', 'serif']

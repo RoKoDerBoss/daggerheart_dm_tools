@@ -41,19 +41,21 @@ interface YourNewToolComponentProps {
 
 export default function YourNewToolComponent({ }: YourNewToolComponentProps) {
   return (
-    <div className="fantasy-card p-8">
-      <h3 className="text-2xl font-bold text-foreground mb-4">
-        Your Tool Interface
-      </h3>
-      <p className="text-muted mb-6">
-        Your tool's interactive interface goes here.
-      </p>
-      
-      {/* Add your tool's functionality here */}
-      <div className="space-y-4">
-        {/* Tool controls, inputs, outputs, etc. */}
-      </div>
-    </div>
+    <FantasyCard variant="fixed" className="p-8">
+      <FantasyCardContent>
+        <h3 className="text-2xl font-bold text-foreground mb-4">
+          Your Tool Interface
+        </h3>
+        <p className="text-muted mb-6">
+          Your tool's interactive interface goes here.
+        </p>
+        
+        {/* Add your tool's functionality here */}
+        <div className="space-y-4">
+          {/* Tool controls, inputs, outputs, etc. */}
+        </div>
+      </FantasyCardContent>
+    </FantasyCard>
   )
 }
 ```

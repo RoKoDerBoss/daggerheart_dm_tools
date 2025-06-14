@@ -1,10 +1,15 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/Button'
 import { calculateBattlePoints, exportBattleEncounter, type BattleEncounter } from '@/utils/data-access'
 import ToolInfo from '@/components/ToolInfo'
 import { ADVERSARY_TYPES, BATTLE_ADJUSTMENTS } from '@/data'
+import { HelpPopover } from '@/components/FantasyPopover'
+import { FantasyCard, FantasyCardContent } from '@/components/FantasyCard'
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { UserCheck, MessageCircle, Zap, Target, Eye, Swords, Crown, Hammer, Star, Download, RefreshCw } from 'lucide-react'
 
 interface BattlePointsCalculatorComponentProps {}
 
@@ -32,6 +37,33 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
     }
   })
 
+  const [partySizeInput, setPartySizeInput] = useState(encounter.partySize.toString())
+
+  // Keep partySizeInput in sync with encounter.partySize
+  useEffect(() => {
+    setPartySizeInput(encounter.partySize.toString())
+  }, [encounter.partySize])
+
+  const handlePartySizeInputChange = (value: string) => {
+    // Allow empty string for editing
+    if (/^\d{0,2}$/.test(value)) {
+      setPartySizeInput(value)
+    }
+  }
+
+  const commitPartySize = () => {
+    const numValue = parseInt(partySizeInput)
+    if (!isNaN(numValue)) {
+      setEncounter(prev => ({
+        ...prev,
+        partySize: Math.max(1, Math.min(12, numValue))
+      }))
+    } else {
+      // If empty or invalid, reset to previous valid value
+      setPartySizeInput(encounter.partySize.toString())
+    }
+  }
+
   const battleCalc = calculateBattlePoints(encounter)
 
   const handleAdjustmentChange = (key: keyof typeof encounter.adjustments) => {
@@ -52,14 +84,6 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
         ...prev.adversaries,
         [type]: Math.max(0, numValue)
       }
-    }))
-  }
-
-  const handlePartySizeChange = (value: string) => {
-    const numValue = parseInt(value) || 1
-    setEncounter(prev => ({
-      ...prev,
-      partySize: Math.max(1, Math.min(12, numValue))
     }))
   }
 
@@ -101,381 +125,330 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
     URL.revokeObjectURL(url)
   }
 
-  // Icon components
-  const UserCheckIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-    </svg>
-  )
-
-  const MessageCircleIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-    </svg>
-  )
-
-  const ZapIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-    </svg>
-  )
-
-  const TargetIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="10"></circle>
-      <circle cx="12" cy="12" r="6"></circle>
-      <circle cx="12" cy="12" r="2"></circle>
-    </svg>
-  )
-
-  const EyeIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-    </svg>
-  )
-
-  const SwordsIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 3l-6 6m0 0V4m0 5h5M5 3a2 2 0 00-2 2v1c0 8.284 6.716 15 15 15h1a2 2 0 002-2v-3.28a1 1 0 00-.684-.948l-4.493-1.498a1 1 0 00-1.21.502l-1.13 2.257a11.042 11.042 0 01-5.516-5.517l2.257-1.128a1 1 0 00.502-1.21L9.228 3.683A1 1 0 008.279 3H5z"></path>
-    </svg>
-  )
-
-  const CrownIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3l14 9-14 9V3z"></path>
-    </svg>
-  )
-
-  const HammerIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-    </svg>
-  )
-
-  const StarIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
-    </svg>
-  )
-
-  const DownloadIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-    </svg>
-  )
-
-  const RefreshIcon = () => (
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-    </svg>
-  )
-
   return (
     <div className="space-y-6">
-      {/* Brief Description */}
+      {/* Header */}
       <div className="text-center -mt-2">
-        <p className="text-lg text-muted italic leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground-foreground italic leading-relaxed max-w-2xl mx-auto">
           Calculate and track battle points for encounters, helping balance challenging fights
         </p>
       </div>
-
-
 
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Left Column - Setup */}
         <div className="space-y-6">
           {/* Party Setup & Adjustments */}
-          <div className="fantasy-card p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-foreground">Party Setup & Adjustments</h2>
-              <div className="flex gap-2">
-                <Button 
-                  onClick={handleExportEncounter}
-                  variant="secondary"
-                  className="flex items-center gap-1.5 text-sm px-3 py-2"
-                >
-                  <DownloadIcon />
-                  <span className="hidden lg:inline">Export</span>
-                </Button>
-                <Button 
-                  onClick={resetCalculator}
-                  variant="secondary"
-                  className="flex items-center gap-1.5 text-sm px-3 py-2"
-                >
-                  <RefreshIcon />
-                  <span className="hidden lg:inline">Reset</span>
-                </Button>
+          <FantasyCard variant="default">
+            <FantasyCardContent className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-foreground">Party Setup & Adjustments</h2>
+                <div className="flex gap-2">
+                  <Button 
+                    onClick={handleExportEncounter}
+                    variant="outline"
+                    className="flex items-center gap-1.5 text-sm px-3 py-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span className="hidden lg:inline">Export</span>
+                  </Button>
+                  <Button 
+                    onClick={resetCalculator}
+                    variant="outline"
+                    className="flex items-center gap-1.5 text-sm px-3 py-2"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    <span className="hidden lg:inline">Reset</span>
+                  </Button>
+                </div>
               </div>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-6">
-              {/* Party Setup */}
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-4">Party Size</h3>
+              
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Party Setup */}
                 <div>
-                  <label className="block text-xs font-medium text-muted mb-2 uppercase tracking-wide">
-                    Number of PCs
-                  </label>
-                  <input
-                    type="number"
-                    min="1"
-                    max="12"
-                    value={encounter.partySize}
-                    onChange={(e) => handlePartySizeChange(e.target.value)}
-                    className="w-full bg-background border-2 border-gray-600 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-colors"
-                  />
-                  <p className="text-sm text-muted mt-2">
-                    Base Points: ({encounter.partySize} × 3) + 2 = <span className="text-accent font-semibold">{battleCalc.basePoints}</span>
-                  </p>
-                </div>
-              </div>
-
-              {/* Battle Adjustments */}
-              <div>
-                <h3 className="text-lg font-semibold text-foreground mb-4">Battle Adjustments</h3>
-                <div className="space-y-3">
-                  {Object.entries(BATTLE_ADJUSTMENTS).map(([id, adjustment]) => (
-                    <label key={id} className="flex items-center gap-3 cursor-pointer">
-                      <input
-                        type="checkbox"
-                        checked={encounter.adjustments[id as keyof typeof encounter.adjustments]}
-                        onChange={() => handleAdjustmentChange(id as keyof typeof encounter.adjustments)}
-                        className="w-4 h-4 text-accent bg-background border-gray-600 rounded focus:ring-accent focus:ring-2"
-                      />
-                      <span className={`text-sm font-medium ${adjustment.modifier < 0 ? 'text-green-400' : 'text-red-400'}`}>
-                        ({adjustment.modifier > 0 ? '+' : ''}{adjustment.modifier})
-                      </span>
-                      <span className="text-muted text-sm">{adjustment.name}</span>
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
+                    <div className="flex items-center gap-2">
+                      Party Size
+                      <HelpPopover title="Party Size">
+                        The number of player characters in your party. This determines the base battle points available for the encounter. Standard formula: (Party Size × 3) + 2. Recommended range is 3-6 players.
+                      </HelpPopover>
+                    </div>
+                  </h3>
+                  <div>
+                    <label className="block text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                      Number of PCs
                     </label>
-                  ))}
+                    <Input
+                      type="number"
+                      min="1"
+                      max="12"
+                      value={partySizeInput}
+                      onChange={(e) => handlePartySizeInputChange(e.target.value)}
+                      onBlur={commitPartySize}
+                      onKeyDown={e => { if (e.key === 'Enter') commitPartySize() }}
+                      variant="fantasy"
+                    />
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Base Points: ({encounter.partySize} × 3) + 2 = <span className="text-lg text-accent font-semibold">{battleCalc.basePoints}</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Battle Adjustments */}
+                <div>
+                  <h3 className="text-lg font-semibold text-foreground mb-4">
+                    <div className="flex items-center gap-2">
+                      Battle Adjustments
+                      <HelpPopover title="Battle Adjustments">
+                        Modify the encounter difficulty based on situational factors. Positive modifiers (+) make encounters harder, negative modifiers (-) make them easier. These adjust the total battle points available.
+                      </HelpPopover>
+                    </div>
+                  </h3>
+                  <div className="space-y-3">
+                    {Object.entries(BATTLE_ADJUSTMENTS).map(([id, adjustment]) => (
+                      <label key={id} className="flex items-center gap-3 cursor-pointer">
+                        <Checkbox
+                          checked={encounter.adjustments[id as keyof typeof encounter.adjustments]}
+                          onCheckedChange={() => handleAdjustmentChange(id as keyof typeof encounter.adjustments)}
+                          variant="foreground"
+                        />
+                        <span className={`text-lg sm:text-base font-medium ${adjustment.modifier < 0 ? 'text-green-400' : 'text-red-400'}`}>
+                          {adjustment.modifier > 0 ? '+' : ''}{adjustment.modifier}
+                        </span>
+                        <div className="flex flex-wrap items-center text-muted-foreground text-sm break-words whitespace-normal w-full">{adjustment.name}</div>
+                      </label>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </FantasyCardContent>
+          </FantasyCard>
 
           {/* Results */}
-          <div className="fantasy-card p-6">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Battle Points Summary</h2>
-            <div className="space-y-4">
-              <div className="flex justify-between text-lg">
-                <span className="text-muted">Available Points:</span>
-                <span className="text-accent font-bold text-2xl">{battleCalc.availablePoints}</span>
-              </div>
-              <div className="flex justify-between text-lg">
-                <span className="text-muted">Spent Points:</span>
-                <span className="text-yellow-400 font-bold text-2xl">{battleCalc.spentPoints}</span>
-              </div>
-              <div className="border-t border-gray-600 pt-4">
-                <div className="flex justify-between text-xl">
-                  <span className="text-foreground font-semibold">Remaining:</span>
-                  <span className={`font-bold text-3xl ${battleCalc.remainingPoints >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                    {battleCalc.remainingPoints}
-                  </span>
+          <FantasyCard variant="default">
+            <FantasyCardContent className="p-6">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Battle Points Summary</h2>
+              <div className="space-y-4">
+                <div className="flex justify-between text-lg">
+                  <span className="text-muted-foreground-foreground">Available Points:</span>
+                  <span className="text-accent font-bold text-2xl">{battleCalc.availablePoints}</span>
                 </div>
+                <div className="flex justify-between text-lg">
+                  <span className="text-muted-foreground-foreground">Spent Points:</span>
+                  <span className="text-yellow-400 font-bold text-2xl">{battleCalc.spentPoints}</span>
+                </div>
+                <div className="border-t border-gray-600 pt-4">
+                  <div className="flex justify-between text-xl">
+                    <span className="text-foreground font-semibold">Remaining:</span>
+                    <span className={`font-bold text-3xl ${battleCalc.remainingPoints >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                      {battleCalc.remainingPoints}
+                    </span>
+                  </div>
+                </div>
+                {battleCalc.isOverBudget && (
+                  <div className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg p-3 mt-3">
+                    ⚠️ Over budget! Reduce adversaries or adjust modifiers.
+                  </div>
+                )}
+                {battleCalc.hasPointsLeft && (
+                  <div className="text-yellow-400 text-sm bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-3 mt-3">
+                    💡 You have {battleCalc.remainingPoints} points left to spend.
+                  </div>
+                )}
               </div>
-              {battleCalc.isOverBudget && (
-                <div className="text-red-400 text-sm bg-red-900/20 border border-red-700/30 rounded-lg p-3 mt-3">
-                  ⚠️ Over budget! Reduce adversaries or adjust modifiers.
-                </div>
-              )}
-              {battleCalc.hasPointsLeft && (
-                <div className="text-yellow-400 text-sm bg-yellow-900/20 border border-yellow-700/30 rounded-lg p-3 mt-3">
-                  💡 You have {battleCalc.remainingPoints} points left to spend.
-                </div>
-              )}
-            </div>
-          </div>
+            </FantasyCardContent>
+          </FantasyCard>
         </div>
 
         {/* Right Column - Adversaries */}
-        <div className="fantasy-card p-6">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Adversaries</h2>
-          
-          {/* 1 Point Adversaries */}
-          <div className="mb-8">
-            <h3 className="text-sm font-bold text-yellow-400 mb-4 border-b border-yellow-400/30 pb-2 uppercase tracking-wider">
-              1 Point Each
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <UserCheckIcon />
-                    <span>Minions</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.minions}
-                  onChange={(e) => handleAdversaryChange('minions', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <MessageCircleIcon />
-                    <span>Social/Support</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.social}
-                  onChange={(e) => handleAdversaryChange('social', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
+        <FantasyCard variant="default">
+          <FantasyCardContent className="p-6">
+            <h2 className="text-2xl font-bold text-foreground mb-6">Adversaries</h2>
+            
+            {/* 1 Point Adversaries */}
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-yellow-400 mb-4 border-b border-yellow-400/30 pb-2 uppercase tracking-wider">
+                1 Point Each
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <UserCheck className="w-4 h-4 text-yellow-400" />
+                      <span>Minions</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.minions}
+                    onChange={(e) => handleAdversaryChange('minions', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <MessageCircle className="w-4 h-4 text-yellow-400" />
+                      <span>Social/Support</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.social}
+                    onChange={(e) => handleAdversaryChange('social', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* 2 Point Adversaries */}
-          <div className="mb-8">
-            <h3 className="text-sm font-bold text-orange-400 mb-4 border-b border-orange-400/30 pb-2 uppercase tracking-wider">
-              2 Points Each
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <ZapIcon />
-                    <span>Horde</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.horde}
-                  onChange={(e) => handleAdversaryChange('horde', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <TargetIcon />
-                    <span>Ranged</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.ranged}
-                  onChange={(e) => handleAdversaryChange('ranged', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <EyeIcon />
-                    <span>Skulk</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.skulk}
-                  onChange={(e) => handleAdversaryChange('skulk', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <SwordsIcon />
-                    <span>Standard</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.standard}
-                  onChange={(e) => handleAdversaryChange('standard', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
+            {/* 2 Point Adversaries */}
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-orange-400 mb-4 border-b border-orange-400/30 pb-2 uppercase tracking-wider">
+                2 Points Each
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Zap className="w-4 h-4 text-orange-400" />
+                      <span>Horde</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.horde}
+                    onChange={(e) => handleAdversaryChange('horde', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Target className="w-4 h-4 text-orange-400" />
+                      <span>Ranged</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.ranged}
+                    onChange={(e) => handleAdversaryChange('ranged', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-4 h-4 text-orange-400" />
+                      <span>Skulk</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.skulk}
+                    onChange={(e) => handleAdversaryChange('skulk', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Swords className="w-4 h-4 text-orange-400" />
+                      <span>Standard</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.standard}
+                    onChange={(e) => handleAdversaryChange('standard', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* 3 Point Adversaries */}
-          <div className="mb-8">
-            <h3 className="text-sm font-bold text-red-400 mb-4 border-b border-red-400/30 pb-2 uppercase tracking-wider">
-              3 Points Each
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <CrownIcon />
-                    <span>Leader</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.leader}
-                  onChange={(e) => handleAdversaryChange('leader', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
+            {/* 3 Point Adversaries */}
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-red-400 mb-4 border-b border-red-400/30 pb-2 uppercase tracking-wider">
+                3 Points Each
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Crown className="w-4 h-4 text-red-400" />
+                      <span>Leader</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.leader}
+                    onChange={(e) => handleAdversaryChange('leader', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* 4 Point Adversaries */}
-          <div className="mb-8">
-            <h3 className="text-sm font-bold text-red-400 mb-4 border-b border-red-400/30 pb-2 uppercase tracking-wider">
-              4 Points Each
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <HammerIcon />
-                    <span>Bruiser</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.bruiser}
-                  onChange={(e) => handleAdversaryChange('bruiser', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
+            {/* 4 Point Adversaries */}
+            <div className="mb-8">
+              <h3 className="text-sm font-bold text-red-400 mb-4 border-b border-red-400/30 pb-2 uppercase tracking-wider">
+                4 Points Each
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Hammer className="w-4 h-4 text-red-400" />
+                      <span>Bruiser</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.bruiser}
+                    onChange={(e) => handleAdversaryChange('bruiser', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* 5 Point Adversaries */}
-          <div>
-            <h3 className="text-sm font-bold text-purple-400 mb-4 border-b border-purple-400/30 pb-2 uppercase tracking-wider">
-              5 Points Each
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-muted mb-2">
-                  <div className="flex items-center gap-2">
-                    <StarIcon />
-                    <span>Solo</span>
-                  </div>
-                </label>
-                <input
-                  type="number"
-                  min="0"
-                  value={encounter.adversaries.solo}
-                  onChange={(e) => handleAdversaryChange('solo', e.target.value)}
-                  className="w-full bg-background border-2 border-gray-600 rounded-lg px-3 py-2 text-foreground focus:outline-none focus:border-accent transition-colors"
-                />
+            {/* 5 Point Adversaries */}
+            <div>
+              <h3 className="text-sm font-bold text-purple-400 mb-4 border-b border-purple-400/30 pb-2 uppercase tracking-wider">
+                5 Points Each
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-muted-foreground mb-2">
+                    <div className="flex items-center gap-2">
+                      <Star className="w-4 h-4 text-purple-400" />
+                      <span>Solo</span>
+                    </div>
+                  </label>
+                  <Input
+                    type="number"
+                    min="0"
+                    value={encounter.adversaries.solo}
+                    onChange={(e) => handleAdversaryChange('solo', e.target.value)}
+                    variant="fantasy"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        </div>
+          </FantasyCardContent>
+        </FantasyCard>
       </div>
 
       {/* Detailed Information Accordion */}
@@ -512,13 +485,25 @@ export default function BattlePointsCalculatorComponent({}: BattlePointsCalculat
         </ul>
 
         <h3>Encounter Adjustments</h3>
-        <ul>
-          <li><strong>Easier:</strong> Reduces total budget for simpler encounters</li>
-          <li><strong>Two Solos:</strong> Adjustment for encounters with multiple solo adversaries</li>
-          <li><strong>Bonus Damage:</strong> Account for environmental or special damage sources</li>
-          <li><strong>Lower Tier:</strong> Adjustment for adversaries below party level</li>
-          <li><strong>No Bruisers/Etc:</strong> Compensation when avoiding certain adversary types</li>
-          <li><strong>Harder:</strong> Increases budget for more challenging encounters</li>
+        <ul className="list-none p-0 my-4 text-muted-foreground-foreground">
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Easier:</strong> Reduces total budget for simpler encounters
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Two Solos:</strong> Adjustment for encounters with multiple solo adversaries
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Bonus Damage:</strong> Account for environmental or special damage sources
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Lower Tier:</strong> Adjustment for adversaries below party level
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>No Bruisers/Etc:</strong> Compensation when avoiding certain adversary types
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Harder:</strong> Increases budget for more challenging encounters
+          </li>
         </ul>
       </ToolInfo>
     </div>

@@ -5,6 +5,16 @@ import { Button } from '@/components/Button'
 import { generateMultipleLoot } from '@/utils/data-access'
 import ToolInfo from '@/components/ToolInfo'
 import type { LootItem } from '@/data'
+import { HelpPopover, InfoPopover, TipPopover } from '@/components/FantasyPopover'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Input } from "@/components/ui/input"
+import { Card, CardContent } from "@/components/ui/card"
 
 interface LootGeneratorComponentProps {}
 
@@ -16,11 +26,13 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
   const [generatedConsumables, setGeneratedConsumables] = useState<LootItem[]>([])
 
   const handleGenerateItems = () => {
+    if (!itemQuantity || itemQuantity < 1) return
     const lootItems = generateMultipleLoot('item', itemQuantity, itemRarity)
     setGeneratedItems(lootItems)
   }
 
   const handleGenerateConsumables = () => {
+    if (!consumableQuantity || consumableQuantity < 1) return
     const lootItems = generateMultipleLoot('consumable', consumableQuantity)
     setGeneratedConsumables(lootItems)
   }
@@ -38,7 +50,7 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
   const LootDisplay = ({ items, emptyMessage }: { items: LootItem[], emptyMessage: string }) => (
     <div className="bg-card border-2 border-gray-600 rounded-lg p-4 min-h-[300px] max-h-[650px] overflow-y-auto">
       {items.length === 0 ? (
-        <div className="flex items-center justify-center h-full text-muted italic text-center py-16">
+        <div className="flex items-center justify-center h-full text-muted-foreground italic text-center py-16">
           {emptyMessage}
         </div>
       ) : (
@@ -49,17 +61,17 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
               className="bg-background border-2 border-gray-600 rounded-lg p-4 hover:border-accent/50 transition-colors"
             >
               <div className="flex flex-wrap justify-between items-start gap-2 mb-3">
-                <div className="flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap flex-col sm:flex-row items-start gap-2">
                   <h3 className="text-lg font-semibold text-accent">{loot.name}</h3>
                   <span className={`px-3 py-1 rounded-full text-sm font-medium uppercase tracking-wide ${getRarityColor(loot.rarity)}`}>
                     {loot.rarity}
                   </span>
                 </div>
-                <span className="text-sm text-muted italic">
+                <span className="text-sm text-muted-foreground italic">
                   {loot.diceRoll.rolls.join(' + ')} = {loot.diceRoll.total}
                 </span>
               </div>
-              <p className="text-muted leading-relaxed">{loot.description}</p>
+              <p className="text-muted-foreground leading-relaxed">{loot.description}</p>
             </div>
           ))}
         </div>
@@ -69,9 +81,9 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
 
   return (
     <div className="space-y-6">
-      {/* Brief Description */}
+      {/* Header */}
       <div className="text-center -mt-2">
-        <p className="text-lg text-muted italic leading-relaxed max-w-2xl mx-auto">
+        <p className="text-lg text-muted-foreground italic leading-relaxed max-w-2xl mx-auto">
           Generate exciting treasure and loot with customizable rarity and item types for your adventures
         </p>
       </div>
@@ -79,42 +91,72 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
       {/* Loot Generator Tool */}
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Items Generator */}
-        <div className="fantasy-card p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-3xl">⚔️</span>
-            <h2 className="text-2xl font-bold text-foreground">Items</h2>
-          </div>
+        <Card className="fantasy">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-3xl">⚔️</span>
+              <h2 className="text-2xl font-bold text-foreground">Items</h2>
+            </div>
           
           <div className="space-y-4 mb-6">
             <div>
-              <label className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
-                Rarity
+              <label htmlFor="item-rarity-select" className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
+                <div className="flex text-muted-foreground items-center gap-2">
+                  Rarity
+                  <HelpPopover title="Item Rarity">
+                    Controls the power level and value of generated items. Higher rarities have better bonuses but are more expensive. &ldquo;Any Rarity&rdquo; generates random items across all tiers.
+                  </HelpPopover>
+                </div>
               </label>
-              <select
+              <Select
                 value={itemRarity}
-                onChange={(e) => setItemRarity(e.target.value)}
-                className="w-full bg-background border-2 border-gray-600 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-colors"
+                onValueChange={(value) => setItemRarity(value)}
               >
-                <option value="any">Any Rarity</option>
-                <option value="common">Common (1d12 or 2d12)</option>
-                <option value="uncommon">Uncommon (2d12 or 3d12)</option>
-                <option value="rare">Rare (3d12 or 4d12)</option>
-                <option value="legendary">Legendary (4d12 or 5d12)</option>
-              </select>
+                <SelectTrigger 
+                  id="item-rarity-select"
+                  className="w-full h-12 bg-background border-2 border-gray-600 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-colors"
+                  aria-describedby="item-rarity-help"
+                >
+                  <SelectValue placeholder="Select rarity" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="any">Any Rarity</SelectItem>
+                  <SelectItem value="common">Common (1d12 or 2d12)</SelectItem>
+                  <SelectItem value="uncommon">Uncommon (2d12 or 3d12)</SelectItem>
+                  <SelectItem value="rare">Rare (3d12 or 4d12)</SelectItem>
+                  <SelectItem value="legendary">Legendary (4d12 or 5d12)</SelectItem>
+                </SelectContent>
+              </Select>
+              <div id="item-rarity-help" className="sr-only">
+                Controls the power level and rarity of generated items. Higher rarities create more valuable and powerful items.
+              </div>
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
-                Quantity
+              <label htmlFor="item-quantity-input" className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
+                <div className="flex text-muted-foreground items-center gap-2">
+                  Quantity
+                  <HelpPopover title="Item Quantity">
+                    Generate multiple items at once to fill treasure hoards quickly. Great for post-combat loot distribution!
+                  </HelpPopover>
+                </div>
               </label>
-              <input
+              <Input
+                id="item-quantity-input"
                 type="number"
                 min="1"
                 max="20"
-                value={itemQuantity}
-                onChange={(e) => setItemQuantity(parseInt(e.target.value) || 1)}
+                value={itemQuantity || ''}
+                onChange={(e) => {
+                  const value = e.target.value === '' ? '' : parseInt(e.target.value)
+                  setItemQuantity(value === '' ? 0 : value)
+                }}
                 className="w-full bg-background border-2 border-gray-600 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-colors"
+                aria-describedby="item-quantity-help"
               />
+              <div id="item-quantity-help" className="sr-only">
+                Number of items to generate at once, from 1 to 20 items.
+              </div>
             </div>
             
             <Button onClick={handleGenerateItems} className="w-full mt-4 rounded-xl">
@@ -123,29 +165,41 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
           </div>
           
           <LootDisplay items={generatedItems} emptyMessage="No items yet..." />
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Consumables Generator */}
-        <div className="fantasy-card p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="text-3xl">🧪</span>
-            <h2 className="text-2xl font-bold text-foreground">Consumables</h2>
-          </div>
+        <Card className="fantasy">
+          <CardContent className="p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="text-3xl">🧪</span>
+              <h2 className="text-2xl font-bold text-foreground">Consumables</h2>
+            </div>
           
           <div className="space-y-4 mb-6">
             <div>
               <label className="block text-sm font-medium text-muted mb-2 uppercase tracking-wide">
-                Quantity
+                <div className="flex text-muted-foreground items-center gap-2">
+                  Quantity
+                  <HelpPopover title="Consumables">
+                    Consumables don&apos;t have rarity tiers - they&apos;re generated from a curated list of potions, scrolls, and temporary items perfect for immediate use.
+                  </HelpPopover>
+                </div>
               </label>
-              <input
+              <Input
                 type="number"
                 min="1"
                 max="20"
-                value={consumableQuantity}
-                onChange={(e) => setConsumableQuantity(parseInt(e.target.value) || 1)}
+                value={consumableQuantity || ''}
+                onChange={(e) => {
+                  const value = e.target.value === '' ? '' : parseInt(e.target.value)
+                  setConsumableQuantity(value === '' ? 0 : value)
+                }}
                 className="w-full bg-background border-2 border-gray-600 rounded-lg px-4 py-3 text-foreground focus:outline-none focus:border-accent transition-colors"
               />
             </div>
+            
+            <div className="hidden lg:block h-[75px]" />
             
             <Button onClick={handleGenerateConsumables} className="w-full mt-4 rounded-xl">
               Generate Consumables
@@ -153,7 +207,8 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
           </div>
           
           <LootDisplay items={generatedConsumables} emptyMessage="No consumables yet..." />
-        </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Detailed Information Accordion */}
@@ -185,18 +240,32 @@ export default function LootGeneratorComponent({}: LootGeneratorComponentProps) 
         </div>
 
         <h3>Item Rarity System</h3>
-        <ul>
-          <li><strong>Common:</strong> Basic equipment and simple tools (1d12 or 2d12 range)</li>
-          <li><strong>Uncommon:</strong> Quality gear with minor enhancements (2d12 or 3d12 range)</li>
-          <li><strong>Rare:</strong> Exceptional items with notable properties (3d12 or 4d12 range)</li>
-          <li><strong>Legendary:</strong> Powerful artifacts and magical treasures (4d12 or 5d12 range)</li>
+        <ul className="list-none p-0 my-4 text-muted-foreground">
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Common:</strong> Basic equipment and simple tools (1d12 or 2d12 range)
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Uncommon:</strong> Quality gear with minor enhancements (2d12 or 3d12 range)
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Rare:</strong> Exceptional items with notable properties (3d12 or 4d12 range)
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            <strong>Legendary:</strong> Powerful artifacts and magical treasures (4d12 or 5d12 range)
+          </li>
         </ul>
 
         <h3>Usage Tips</h3>
-        <ul>
-          <li>Use &quot;Any Rarity&quot; for completely random treasure discovery</li>
-          <li>Target specific rarities when creating themed encounters or rewards</li>
-          <li>Generate consumables separately to balance permanent item rewards</li>
+        <ul className="list-none p-0 my-4 text-muted-foreground">
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            Use &ldquo;Any Rarity&rdquo; for completely random treasure discovery
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            Target specific rarities when creating themed encounters or rewards
+          </li>
+          <li className="flex items-start gap-3 mb-3 leading-normal before:content-['✦'] before:text-accent before:mt-0.5 before:flex-shrink-0">
+            Generate consumables separately to balance permanent item rewards
+          </li>
         </ul>
       </ToolInfo>
     </div>
