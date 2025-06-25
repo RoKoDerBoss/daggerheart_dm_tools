@@ -889,7 +889,7 @@ export const DiceResultCard: React.FC<DiceResultCardProps> = ({
       {/* Action Buttons */}
       <div className={cn(
         "flex w-full items-center gap-2",
-        isMobile ? "justify-between" : "flex-wrap"
+        isMobile ? "justify-between" : "flex-1"
       )}>
         {/* All buttons in one horizontal line for mobile */}
         <Button

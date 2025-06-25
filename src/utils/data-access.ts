@@ -8,10 +8,10 @@ import {
   calculateBasePoints,
   calculateAdjustments,
   getTotalAdversaryCost,
-  rollMultipleDice,
   type LootItem,
   type LootItemData 
 } from '@/data'
+import { rollMultipleDice } from '@/lib/dice-utils'
 
 // ===== LOOT GENERATION UTILITIES =====
 
@@ -90,7 +90,7 @@ function getDiceCountForRarity(rarity: string): number {
 
 function rollDice(count: number) {
   const rolls = rollMultipleDice(count, 12)
-  const total = rolls.reduce((sum, roll) => sum + roll, 0)
+  const total = rolls.reduce((sum: number, roll: number) => sum + roll, 0)
   return { total, rolls }
 }
 

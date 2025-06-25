@@ -1095,4 +1095,18 @@ export function getDieTypeByName(name: string): DieType | undefined {
  */
 export function getCommonDice(): DieType[] {
   return STANDARD_DICE.filter(die => die.common);
+}
+
+/**
+ * Roll multiple dice of the same type (migrated from data/utilities/dice.ts)
+ * @param count Number of dice to roll
+ * @param sides Number of sides on each die
+ * @returns Array of roll results
+ */
+export function rollMultipleDice(count: number, sides: number): number[] {
+  const rolls: number[] = [];
+  for (let i = 0; i < count; i++) {
+    rolls.push(Math.floor(Math.random() * sides) + 1);
+  }
+  return rolls;
 } 
