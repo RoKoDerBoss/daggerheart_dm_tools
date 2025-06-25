@@ -9,7 +9,7 @@
 
 import React, { useState, useCallback, useMemo, useRef, useEffect, useId } from 'react';
 import { cn } from '@/lib/utils';
-import { Button } from '@/components/Button';
+import { Button } from '@/components/ui/button';
 import { useDice } from '@/contexts/DiceContext';
 import { 
   DiceRollerProps, 

@@ -25,6 +25,36 @@ export const DEFAULT_DICE_CONFIG: DiceRollConfig = {
 };
 
 /**
+ * Standard die types and common Daggerheart rolls
+ * Migrated from data/utilities/dice.ts
+ */
+export interface DieType {
+  sides: number;
+  name: string;
+  common: boolean;
+}
+
+export const STANDARD_DICE: DieType[] = [
+  { sides: 4, name: 'd4', common: true },
+  { sides: 6, name: 'd6', common: true },
+  { sides: 8, name: 'd8', common: true },
+  { sides: 10, name: 'd10', common: true },
+  { sides: 12, name: 'd12', common: true },
+  { sides: 20, name: 'd20', common: true },
+  { sides: 100, name: 'd100', common: false }
+];
+
+export const COMMON_DAGGERHEART_ROLLS = [
+  { name: 'Action Roll', expression: '2d12', description: 'Standard action roll with dual d12s' },
+  { name: 'Hope Die', expression: '1d20', description: 'Hope die for adding to action rolls' },
+  { name: 'Damage (Light)', expression: '1d4', description: 'Light weapon damage' },
+  { name: 'Damage (Medium)', expression: '1d6', description: 'Medium weapon damage' },
+  { name: 'Damage (Heavy)', expression: '1d8', description: 'Heavy weapon damage' },
+  { name: 'Damage (Very Heavy)', expression: '1d10', description: 'Very heavy weapon damage' },
+  { name: 'Magic Damage', expression: '1d20', description: 'Spell damage roll' }
+];
+
+/**
  * Regular expression patterns for dice notation parsing
  */
 const DICE_PATTERNS = {
@@ -1047,4 +1077,22 @@ export function checkDiceExpressionSafety(expression: string): {
   const isSafe = warnings.length === 0;
   
   return { isSafe, warnings };
+}
+
+/**
+ * Helper functions migrated from data/utilities/dice.ts
+ */
+
+/**
+ * Get die type by name
+ */
+export function getDieTypeByName(name: string): DieType | undefined {
+  return STANDARD_DICE.find(die => die.name.toLowerCase() === name.toLowerCase());
+}
+
+/**
+ * Get common dice types only
+ */
+export function getCommonDice(): DieType[] {
+  return STANDARD_DICE.filter(die => die.common);
 } 

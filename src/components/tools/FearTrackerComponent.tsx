@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import ToolInfo from '@/components/ToolInfo'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import { QuestionTooltip, TooltipProvider } from '@/components/FantasyTooltip'
 
 interface FearTrackerComponentProps {}

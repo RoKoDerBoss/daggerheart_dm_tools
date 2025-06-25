@@ -6,8 +6,7 @@ export * from './loot/consumables'
 export * from './combat/adversaries'
 export * from './combat/battle-points'
 
-// Utility Data
-export * from './utilities/dice'
+// Utility Data (dice utilities moved to @/lib/dice-utils)
 
 // Re-export types for convenience
 export type { 
@@ -24,8 +23,4 @@ export type {
   BattlePointsConfig 
 } from './combat/battle-points'
 
-export type { 
-  DieType, 
-  DiceRoll, 
-  DiceRollResult 
-} from './utilities/dice' 
+// Note: DieType types now exported from @/lib/dice-utils 

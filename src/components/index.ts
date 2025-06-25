@@ -20,8 +20,6 @@ export * from './ui/separator';
 export * from './ui/checkbox';
 
 // Enhanced Components
-export { Button } from './Button';
-export { Card } from './Card';
 export { FantasyCard, FantasyCardContent } from './FantasyCard';
 export { 
   FantasyHoverCard, 
@@ -63,8 +61,4 @@ export { default as BattlePointsCalculatorComponent } from './tools/BattlePoints
 export { default as FearTrackerComponent } from './tools/FearTrackerComponent';
 export { default as MonsterBuilderComponent } from './tools/MonsterBuilderComponent';
 
-// Integration Test Components (for development)
-export { DiceRollerIntegrationTest } from './test/DiceRollerIntegrationTest';
-export { ShadCNIntegrationTest } from './test/ShadCNIntegrationTest';
-export { ShadCNIntegrationVerification } from './test/ShadCNIntegrationVerification';
-export { MonsterStatBlockIntegrationTest } from './test/MonsterStatBlockIntegrationTest'; 
+// Integration Test Components moved to src/test/ 

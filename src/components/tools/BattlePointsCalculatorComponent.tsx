@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import { calculateBattlePoints, exportBattleEncounter, type BattleEncounter } from '@/utils/data-access'
 import ToolInfo from '@/components/ToolInfo'
 import { ADVERSARY_TYPES, BATTLE_ADJUSTMENTS } from '@/data'

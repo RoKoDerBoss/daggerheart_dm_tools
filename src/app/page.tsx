@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { getFeaturedTools } from '@/config/tools'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import { FantasyCard, FantasyCardContent } from "@/components/FantasyCard"
 import { DiceRoller } from '@/components/dice'
 import { DiceResultCard } from '@/components/DiceResultCard'

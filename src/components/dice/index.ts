@@ -29,11 +29,7 @@ export type {
   UseDiceRollHistoryReturn
 } from '../../types/dice';
 
-// Integration Test Components (for development/testing)
-export { DiceRollerIntegrationTest } from '../test/DiceRollerIntegrationTest';
-export { ShadCNIntegrationTest } from '../test/ShadCNIntegrationTest';
-export { ShadCNIntegrationVerification } from '../test/ShadCNIntegrationVerification';
-export { MonsterStatBlockIntegrationTest } from '../test/MonsterStatBlockIntegrationTest';
+// Integration Test Components moved to src/test/
 
 // Re-export dice utilities for convenience
 export * from '../../lib/dice-utils';
@@ -45,10 +41,6 @@ import { DiceRoller } from '../DiceRoller';
 import { DiceResultHoverCard } from '../DiceResultHoverCard';
 import { RollHistoryDisplay } from '../RollHistoryDisplay';
 import { useDiceRollHistory } from '../../hooks/useDiceRollHistory';
-import { DiceRollerIntegrationTest } from '../test/DiceRollerIntegrationTest';
-import { ShadCNIntegrationTest } from '../test/ShadCNIntegrationTest';
-import { ShadCNIntegrationVerification } from '../test/ShadCNIntegrationVerification';
-import { MonsterStatBlockIntegrationTest } from '../test/MonsterStatBlockIntegrationTest';
 
 // Complete dice system bundle
 export const DiceSystem = {
@@ -56,12 +48,4 @@ export const DiceSystem = {
   DiceResultHoverCard,
   RollHistoryDisplay,
   useDiceRollHistory,
-} as const;
-
-// Testing utilities bundle
-export const DiceTestingUtils = {
-  DiceRollerIntegrationTest,
-  ShadCNIntegrationTest,
-  ShadCNIntegrationVerification,
-  MonsterStatBlockIntegrationTest,
 } as const; 

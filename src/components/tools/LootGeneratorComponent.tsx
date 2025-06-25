@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Button } from '@/components/Button'
+import { Button } from '@/components/ui/button'
 import { generateMultipleLoot } from '@/utils/data-access'
 import ToolInfo from '@/components/ToolInfo'
 import type { LootItem } from '@/data'
