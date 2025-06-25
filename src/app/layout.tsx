@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Cormorant_Upright } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
+import { DiceLayout } from '@/components/DiceLayout'
 
 const inter = Inter({ subsets: ['latin'] })
 const cormorantUpright = Cormorant_Upright({ 
@@ -126,7 +127,9 @@ export default function RootLayout({
       >
         <Navbar />
         <main className="min-h-screen">
-          {children}
+          <DiceLayout>
+            {children}
+          </DiceLayout>
         </main>
       </body>
     </html>

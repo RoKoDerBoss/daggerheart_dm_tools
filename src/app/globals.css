@@ -270,6 +270,19 @@
     text-wrap: balance;
   }
   
+  /* Screen reader only utility class for accessibility */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
   /* Fantasy Background Pattern Utilities */
   .fantasy-bg {
     background: linear-gradient(135deg, var(--background) 0%, var(--card) 50%, #1e1b4b 100%);

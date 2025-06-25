@@ -20,6 +20,7 @@ import { HelpPopover, InfoPopover } from '@/components/FantasyPopover'
 import { QuestionTooltip, TooltipProvider } from '@/components/FantasyTooltip'
 import { FantasyCard, FantasyCardContent } from "@/components/FantasyCard"
 import { Checkbox } from "@/components/ui/checkbox"
+import { DiceRoller } from '../DiceRoller'
 
 export default function MonsterBuilderComponent() {
   const [selectedTier, setSelectedTier] = useState<Tier>(1)
@@ -251,14 +252,14 @@ HP: ${monster.stats.hitpoints} | Stress: ${monster.stats.stress}`
 
           {/* Row 3: ATTACK (1 column), DAMAGE (2 columns) */}
           <div className="grid grid-cols-3 gap-1.5 sm:gap-2">
-            <div className="bg-gradient-to-br from-purple-900/20 to-purple-950/20 border border-red-400/30 p-1.5 sm:p-2 rounded-xl text-center">
+            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-purple-950/20 border border-red-400/30 p-1.5 sm:p-2 rounded-xl text-center">
               <div className="text-[10px] sm:text-xs text-accent uppercase font-semibold tracking-wide mb-0.5">ATTACK</div>
-              <div className="font-bold text-base sm:text-lg text-foreground">{monster.stats.attack}</div>
+              <div className="font-bold text-base sm:text-lg text-foreground"><DiceRoller>{monster.stats.attack}</DiceRoller></div>
             </div>
             
-            <div className="bg-gradient-to-br from-purple-900/20 to-purple-950/20 border border-red-400/30 p-1.5 sm:p-2 rounded-xl text-center col-span-2">
+            <div className="flex flex-col items-center justify-center bg-gradient-to-br from-purple-900/20 to-purple-950/20 border border-red-400/30 p-1.5 sm:p-2 rounded-xl text-center col-span-2">
               <div className="text-[10px] sm:text-xs text-accent uppercase font-semibold tracking-wide mb-0.5">DAMAGE</div>
-              <div className="font-bold text-base sm:text-lg text-foreground">{monster.stats.damage}</div>
+              <div className="font-bold text-base sm:text-lg text-foreground"><DiceRoller className="text-2xl">{monster.stats.damage}</DiceRoller></div>
             </div>
           </div>
         </div>
