@@ -4,9 +4,9 @@
  */
 
 import React from 'react';
-import { DiceRoller } from '../DiceRoller';
-import { RollHistoryDisplay } from '../RollHistoryDisplay';
-import { FeatureHoverCard, DiceHoverCard } from '../FantasyHoverCard';
+import { DiceRoller } from '@/components/DiceRoller';
+import { RollHistoryDisplay } from '@/components/RollHistoryDisplay';
+import { FeatureHoverCard, DiceHoverCard } from '@/components/FantasyHoverCard';
 import { useDiceRollHistory } from '@/hooks/useDiceRollHistory';
 import { DiceRollResult, RollAction, RollHistoryEntry } from '@/types/dice';
 

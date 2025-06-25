@@ -7,8 +7,8 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { DiceRoller } from '../DiceRoller';
-import { RollHistoryDisplay } from '../RollHistoryDisplay';
+import { DiceRoller } from '@/components/DiceRoller';
+import { RollHistoryDisplay } from '@/components/RollHistoryDisplay';
 import { Sword, Shield, Heart, Zap, Eye, Target, Copy, RotateCcw } from 'lucide-react';
 
 // Mock monster data based on the actual adversary stats
