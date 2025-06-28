@@ -3,6 +3,7 @@ import { Inter, Cormorant_Upright } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import { DiceLayout } from '@/components/DiceLayout'
+import { FloatingFeedbackButton } from '@/components/FloatingFeedbackButton'
 
 const inter = Inter({ subsets: ['latin'] })
 const cormorantUpright = Cormorant_Upright({ 
@@ -131,6 +132,7 @@ export default function RootLayout({
             {children}
           </DiceLayout>
         </main>
+        <FloatingFeedbackButton />
       </body>
     </html>
   )

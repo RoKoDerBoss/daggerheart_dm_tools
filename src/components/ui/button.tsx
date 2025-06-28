@@ -41,7 +41,7 @@ const buttonVariants = cva(
         
         // Fear Tracker specific variant - large circular buttons with solid color and intense glow
         "fear-control":
-          "w-20 h-20 rounded-full text-2xl font-bold bg-accent text-background border-2 border-accent hover:shadow-[3px_3px_4px_rgba(0,0,0,0.2)] hover:shadow-accent-hover hover:-translate-y-1 active:translate-y-0 disabled:bg-gray-600 disabled:border-gray-600 disabled:ring-gray-600/20 disabled:shadow-gray-600/40 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-lg disabled:hover:ring-4 transition-all duration-300 ease-in-out flex items-center justify-center",
+          "w-20 h-20 rounded-full text-2xl font-bold bg-accent text-background border-2 border-accent hover:-translate-y-0.5 active:translate-y-0 disabled:bg-gray-600 disabled:border-gray-600 disabled:ring-gray-600/20 disabled:shadow-gray-600/40 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-lg disabled:hover:ring-4 transition-all duration-300 ease-in-out flex items-center justify-center",
         
         // Dice Roller specific variant - inline clickable dice expressions with fantasy theming
         "dice":

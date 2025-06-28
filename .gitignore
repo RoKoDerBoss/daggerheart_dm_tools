@@ -39,3 +39,6 @@ next-env.d.ts
 /reports
 /tasks
 .cursor
+
+# Local Netlify folder
+.netlify

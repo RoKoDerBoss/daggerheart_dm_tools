@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 interface FantasyCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode
-  variant?: "default" | "elevated" | "interactive"
+  variant?: "default" | "elevated" | "interactive" | "no-hover"
 }
 
 const FantasyCard = React.forwardRef<HTMLDivElement, FantasyCardProps>(
@@ -14,6 +14,7 @@ const FantasyCard = React.forwardRef<HTMLDivElement, FantasyCardProps>(
       default: "hover:border-accent hover:shadow-[0_10px_25px_rgba(251,191,36,0.2)] transition-all duration-300",
       elevated: "transform hover:scale-[1.02] hover:border-accent hover:shadow-[0_10px_25px_rgba(251,191,36,0.2)] hover:-translate-y-[1px] transition-all duration-300",
       interactive: "cursor-pointer hover:border-accent hover:shadow-[0_10px_25px_rgba(251,191,36,0.2)] hover:-translate-y-[1px] transition-all duration-300",
+      "no-hover": "",
     }
 
     return (
@@ -50,7 +51,7 @@ const FantasyCardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <CardTitle
     ref={ref}
-    className={cn("text-accent font-cormorant text-xl", className)}
+    className={cn("text-accent text-xl", className)}
     {...props}
   />
 ))

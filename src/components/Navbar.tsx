@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
+import { MessageSquare } from "lucide-react"
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -62,6 +63,14 @@ export default function Navbar() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+            
+            {/* Feedback Link
+            <Link 
+              href="/feedback" 
+              className="nav-link flex items-center space-x-1 font-cormorant text-2xl font-bold"
+            >
+              <MessageSquare className="w-5 h-5" />
+            </Link> */}
           </div>
 
           {/* Mobile menu button */}
@@ -94,6 +103,16 @@ export default function Navbar() {
               >
                 Home
               </Link>
+              
+              {/* Mobile Feedback Link */}
+              {/* <Link 
+                href="/feedback" 
+                className="block nav-link flex items-center space-x-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <MessageSquare className="w-4 h-4" />
+                <span>Feedback</span>
+              </Link> */}
 
               
               {/* Mobile Tools List */}
