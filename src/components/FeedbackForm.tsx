@@ -127,6 +127,39 @@ const FeedbackForm = React.forwardRef<HTMLFormElement, FeedbackFormProps>(
               <input type="text" name="bot-field" />
             </div>
 
+            {/* Hidden fields for all optional form fields so Netlify can detect them */}
+            <div className="hidden">
+              {/* Bug report fields */}
+              <input type="hidden" name="toolAffected" value={formData.toolAffected || ""} />
+              <input type="hidden" name="stepsToReproduce" value={formData.stepsToReproduce || ""} />
+              <input type="hidden" name="expectedBehavior" value={formData.expectedBehavior || ""} />
+              <input type="hidden" name="actualBehavior" value={formData.actualBehavior || ""} />
+              
+              {/* Feature request fields */}
+              <input type="hidden" name="useCase" value={formData.useCase || ""} />
+              <input type="hidden" name="priorityLevel" value={formData.priorityLevel || ""} />
+              
+              {/* Design/UI issue fields */}
+              <input type="hidden" name="specificPage" value={formData.specificPage || ""} />
+              <input type="hidden" name="suggestedImprovement" value={formData.suggestedImprovement || ""} />
+              
+              {/* Usability problem fields */}
+              <input type="hidden" name="taskAttempting" value={formData.taskAttempting || ""} />
+              <input type="hidden" name="whereConfused" value={formData.whereConfused || ""} />
+              
+              {/* Performance issue fields */}
+              <input type="hidden" name="deviceInfo" value={formData.deviceInfo || ""} />
+              <input type="hidden" name="browserInfo" value={formData.browserInfo || ""} />
+              
+              {/* Mobile experience fields */}
+              <input type="hidden" name="mobileDevice" value={formData.mobileDevice || ""} />
+              <input type="hidden" name="orientationIssue" value={formData.orientationIssue || ""} />
+              
+              {/* Copy/text issue fields */}
+              <input type="hidden" name="textLocation" value={formData.textLocation || ""} />
+              <input type="hidden" name="suggestedText" value={formData.suggestedText || ""} />
+            </div>
+
             {/* Category Selection */}
             <div className="space-y-2 pt-4">
               <label 
